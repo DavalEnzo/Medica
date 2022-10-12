@@ -27,12 +27,30 @@ class DoctorDataTransformer
             $modele = new Doctor();
             $modele->setFirstname($doctor->{"fields"}->{"Firstname"});
             $modele->setLastname($doctor->{"fields"}->{"Lastname"});
-            $modele->setNames($doctor->{"fields"}->{"Names"});
+            $modele->setJobs($doctor->{"fields"}->{"Jobs_Name"});
             $modele->setId(++$id);
 
             $modeles[] = $modele;
         }
 
+        return $modeles;
+    }
+
+    public function transformDoctorsName() {
+        $doctors = $this->doctorRepository->getDoctorsName();
+        $id = 0;
+
+        $modeles = [];
+
+        foreach ($doctors->{"records"} as $doctor) {
+            $modele = new Doctor();
+            $modele->setFirstname($doctor->{"fields"}->{"Firstname"});
+            $modele->setLastname($doctor->{"fields"}->{"Lastname"});
+            $modele->setIdAirTable($doctor->{"id"});
+            $modele->setId(++$id);
+
+            $modeles[] = $modele;
+        }
         return $modeles;
     }
 }

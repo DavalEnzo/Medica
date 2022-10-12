@@ -4,125 +4,142 @@ namespace AirTable\Modeles;
 
 class Patient
 {
-    protected int $id;
-    protected string $firstname;
-    protected string $lastname;
-    protected string $email;
-    protected int $age;
-    protected string $phone;
-    protected string $sanguin_group;
+    protected ?int $id = null;
+    protected ?string $idAirTable = null;
+    protected ?string $firstname = null;
+    protected ?string $lastname = null;
+    protected ?string $email = null;
+    protected ?int $age = null;
+    protected ?string $phone = null;
+    protected ?string $sanguin_group = null;
     protected array $diseases_name = [];
-    protected string $country;
-    protected string $city;
+    protected ?string $country = null;
+    protected ?string $city = null;
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
 
     /**
-     * @param int $id
+     * @param int|null $id
      */
-    public function setId(int $id): void
+    public function setId(?int $id): void
     {
         $this->id = $id;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getFirstname(): string
+    public function getIdAirTable(): ?string
+    {
+        return $this->idAirTable;
+    }
+
+    /**
+     * @param string|null $idAirTable
+     */
+    public function setIdAirTable(?string $idAirTable): void
+    {
+        $this->idAirTable = $idAirTable;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFirstname(): ?string
     {
         return $this->firstname;
     }
 
     /**
-     * @param string $firstname
+     * @param string|null $firstname
      */
-    public function setFirstname(string $firstname): void
+    public function setFirstname(?string $firstname): void
     {
         $this->firstname = $firstname;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getLastname(): string
+    public function getLastname(): ?string
     {
         return $this->lastname;
     }
 
     /**
-     * @param string $lastname
+     * @param string|null $lastname
      */
-    public function setLastname(string $lastname): void
+    public function setLastname(?string $lastname): void
     {
         $this->lastname = $lastname;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getEmail(): string
+    public function getEmail(): ?string
     {
         return $this->email;
     }
 
     /**
-     * @param string $email
+     * @param string|null $email
      */
-    public function setEmail(string $email): void
+    public function setEmail(?string $email): void
     {
         $this->email = $email;
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getAge(): int
+    public function getAge(): ?int
     {
         return $this->age;
     }
 
     /**
-     * @param int $age
+     * @param int|null $age
      */
-    public function setAge(int $age): void
+    public function setAge(?int $age): void
     {
         $this->age = $age;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getPhone(): string
+    public function getPhone(): ?string
     {
         return $this->phone;
     }
 
     /**
-     * @param string $phone
+     * @param string|null $phone
      */
-    public function setPhone(string $phone): void
+    public function setPhone(?string $phone): void
     {
         $this->phone = $phone;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getSanguinGroup(): string
+    public function getSanguinGroup(): ?string
     {
         return $this->sanguin_group;
     }
 
     /**
-     * @param string $sanguin_group
+     * @param string|null $sanguin_group
      */
-    public function setSanguinGroup(string $sanguin_group): void
+    public function setSanguinGroup(?string $sanguin_group): void
     {
         $this->sanguin_group = $sanguin_group;
     }
@@ -144,36 +161,35 @@ class Patient
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getCountry(): string
+    public function getCountry(): ?string
     {
         return $this->country;
     }
 
     /**
-     * @param string $country
+     * @param string|null $country
      */
-    public function setCountry(string $country): void
+    public function setCountry(?string $country): void
     {
         $this->country = $country;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getCity(): string
+    public function getCity(): ?string
     {
         return $this->city;
     }
 
     /**
-     * @param string $city
+     * @param string|null $city
      */
-    public function setCity(string $city): void
+    public function setCity(?string $city): void
     {
         $this->city = $city;
     }
-
 
 }
