@@ -27,7 +27,7 @@ class DoctorDataTransformer
             $modele = new Doctor();
             $modele->setFirstname($doctor->{"fields"}->{"Firstname"});
             $modele->setLastname($doctor->{"fields"}->{"Lastname"});
-            $modele->setNames($doctor->{"fields"}->{"Names"});
+            $modele->setNames($doctor->{"fields"}->{"Jobs_Name"});
             $modele->setId(++$id);
 
             $modeles[] = $modele;

@@ -8,12 +8,12 @@ use \AirTable\Repository\JobRepository;
 $dto = new JobDataTransformer(new JobRepository());
 $jobs = $dto->transformJobs();
 ?>
-    <div class="bg-gray-50 dark:bg-gray-500 py-8 px-12 grid gap-4 w-full">
+    <div class=" pl-80 bg-gray-50 dark:bg-gray-500 py-8 px-12 grid gap-4 w-full h-screen">
         <div class="w-full text-center text-3xl">
-            <h2 class="text-4xl font-bold dark:text-white text-shadow"> Les Consultations</h2>
+            <h2 class="text-4xl font-bold dark:text-white text-shadow"> Les Jobs</h2>
         </div>
 
-        <div class="overflow-x-auto relative sm:rounded-lg">
+        <div class="overflow-x-auto relative rounded-lg">
             <table class="w-full text-xl text-left text-gray-300 dark:text-gray-200">
                 <thead class="text-xl text-gray-300 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-300 sticky top-0">
                 <tr>

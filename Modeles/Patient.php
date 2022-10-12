@@ -5,6 +5,7 @@ namespace AirTable\Modeles;
 class Patient
 {
     protected int $id;
+    protected string $idAirTable;
     protected string $firstname;
     protected string $lastname;
     protected string $email;
@@ -29,6 +30,22 @@ class Patient
     public function setId(int $id): void
     {
         $this->id = $id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIdAirTable(): string
+    {
+        return $this->idAirTable;
+    }
+
+    /**
+     * @param string $idAirTable
+     */
+    public function setIdAirTable(string $idAirTable): void
+    {
+        $this->idAirTable = $idAirTable;
     }
 
     /**

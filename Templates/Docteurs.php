@@ -8,7 +8,7 @@ use \AirTable\Repository\DoctorRepository;
 $dto = new DoctorDataTransformer(new DoctorRepository());
 $doctors = $dto->transformDoctors();
 ?>
-    <div class="bg-gray-50 dark:bg-gray-500 py-8 px-12 grid gap-4 w-full h-screen">
+    <div class="pl-80 bg-gray-50 dark:bg-gray-500 py-8 px-12 grid gap-4 w-full h-screen">
         <div class="w-full text-center text-3xl">
             <h2 class="text-4xl font-bold dark:text-white text-shadow">Les Docteurs</h2>
         </div>

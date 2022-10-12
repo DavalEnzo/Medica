@@ -25,10 +25,11 @@ class MaladieDataTransformer
 
         foreach ($diseases->{"records"} as $disease) {
             $modele = new Maladie();
+            $modele->setIdAirTable($disease->{"id"});
             $modele->setName($disease->{"fields"}->{"Name"});
             $modele->setDescription($disease->{"fields"}->{"Description"});
-            $modele->setLastnames($disease->{"fields"}->{"Lastnames"});
-            $modele->setFirstnames($disease->{"fields"}->{"Firstnames"});
+            $modele->setLastnames($disease->{"fields"}->{"Patients_Lastname"});
+            $modele->setFirstnames($disease->{"fields"}->{"Patients_Firstname"});
             $modele->setId(++$id);
 
             $modeles[] = $modele;

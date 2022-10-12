@@ -25,6 +25,7 @@ class PatientDataTransformer
 
         foreach ($patients->{"records"} as $patient) {
             $modele = new Patient();
+            $modele->setIdAirTable($patient->{"id"});
             $modele->setFirstname($patient->{"fields"}->{"Firstname"});
             $modele->setLastname($patient->{"fields"}->{"Lastname"});
             $modele->setEmail($patient->{"fields"}->{"Email"});
