@@ -6,7 +6,7 @@ class Job
 {
     protected int $id;
     protected string $name;
-    protected array $doctor = [];
+    protected array $doctors = [];
 
     /**
      * @return int
@@ -43,7 +43,7 @@ class Job
     /**
      * @return array
      */
-    public function getDoctor(): array
+    public function getDoctors(): array
     {
         return $this->doctor;
     }
@@ -51,7 +51,7 @@ class Job
     /**
      * @param array $doctor
      */
-    public function setDoctor(array $doctor): void
+    public function setDoctors(array $doctor): void
     {
         $this->doctor = $doctor;
     }

@@ -5,6 +5,7 @@ namespace AirTable\Modeles;
 class Consultation
 {
     protected int $id;
+    protected string $idAirTable;
     protected string $date;
     protected array $firstname = [];
     protected array $lastname = [];
@@ -25,6 +26,22 @@ class Consultation
     public function setId(int $id): void
     {
         $this->id = $id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIdAirTable(): string
+    {
+        return $this->idAirTable;
+    }
+
+    /**
+     * @param string $idAirTable
+     */
+    public function setIdAirTable(string $idAirTable): void
+    {
+        $this->idAirTable = $idAirTable;
     }
 
     /**
