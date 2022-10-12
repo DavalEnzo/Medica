@@ -1,4 +1,5 @@
 <?php
+$title = "Medica - Maladies";
 require_once "entete.php";
 
 use \AirTable\DataTransformer\MaladieDataTransformer;

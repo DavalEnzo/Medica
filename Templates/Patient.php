@@ -1,4 +1,5 @@
 <?php
+$title = "Medica - Patients";
 require_once "entete.php";
 
 use \AirTable\DataTransformer\PatientDataTransformer;
@@ -14,8 +15,7 @@ $id = 1;
 
 
     <h1 class="text-6xl text-center underline font-semibold my-2">Liste des patients</h1>
-
-    <div class="container mx-auto mt-5">
+        <div class="container mx-auto mt-5">
         <?php
         $i = 0
         ?>

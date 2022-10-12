@@ -1,4 +1,5 @@
 <?php
+$title = "Medica - Consultations";
 require_once "entete.php";
 use \AirTable\DataTransformer\ConsultationDataTransformer;
 use \AirTable\Repository\ConsultationRepository;

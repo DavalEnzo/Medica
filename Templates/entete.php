@@ -28,33 +28,44 @@ require_once '../DataTransformer/JobDataTransformer.php';
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="../style.css">
-    <title>AirTable - Médecin</title>
+    <title><?=$title;?></title>
 </head>
 <body>
-    <nav class="h-16 w-full bg-blue-600 flex justify-around">
-        <a href="Patient.php" class="w-full bg-blue-600 hover:bg-blue-500 hover:cursor-pointer">
-            <div class="font-semibold text-xl text-white text-center mt-3.5">
-                <h1>Patients</h1>
-            </div>
-        </a>
-        <a href="Maladies.php" class="w-full bg-green-600 hover:bg-green-500 hover:cursor-pointer">
-            <div class="font-semibold text-xl text-white text-center mt-3.5">
-                <h1>Maladies</h1>
-            </div>
-        </a>
-        <a href="Docteurs.php" class="w-full bg-red-600 hover:bg-red-500 hover:cursor-pointer">
-            <div class="font-semibold text-xl text-white text-center mt-3.5">
-                <h1>Docteurs</h1>
-            </div>
-        </a>
-        <a href="Consultations.php" class="w-full bg-yellow-600 hover:bg-yellow-500 hover:cursor-pointer">
-            <div class="font-semibold text-xl text-white text-center mt-3.5">
-                <h1>Consultations</h1>
-            </div>
-        </a>
-        <a href="Job.php" class="w-full bg-purple-600 hover:bg-purple-500 hover:cursor-pointer">
-            <div class="font-semibold text-xl text-white text-center mt-3.5">
-                <h1>Job</h1>
-            </div>
-        </a>
-    </nav>
+
+<aside class="w-72 fixed left-0 top-0"  aria-label="Sidebar">
+    <div class="overflow-y-auto py-4  h-screen px-3 bg-gray-50 text-xl rounded-tr-lg rounded-br-lg dark:bg-gray-600">
+        <div class="text-white inline-block text-5xl font-semibold mb-10"><img class="inline-block w-20" src="https://icons.veryicon.com/png/o/business/circular-multi-color-function-icon/health-health.png"> Medica </div>
+        <ul class="space-y-8">
+            <li class="hover:bg-gray-500 hover:rounded-lg transition ease-in-out hover:bg-opacity-50 duration-700">
+                <a href="Patient.php" class="w-full flex items-center text-white hover:cursor-pointer">
+                    <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 text-white transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
+                        <span class="flex-1 ml-3 whitespace-nowrap">Patients</span>
+                </a>
+            </li>
+            <li>
+                <a href="Docteurs.php" class="w-full flex items-center text-white hover:cursor-pointer">
+                    <svg class="flex-shrink-0 w-6 h-6 text-white transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"> <g> <path fill="none" d="M0 0H24V24H0z"/> <path d="M8 3v2H6v4c0 2.21 1.79 4 4 4s4-1.79 4-4V5h-2V3h3c.552 0 1 .448 1 1v5c0 2.973-2.162 5.44-5 5.917V16.5c0 1.933 1.567 3.5 3.5 3.5 1.497 0 2.775-.94 3.275-2.263C16.728 17.27 16 16.22 16 15c0-1.657 1.343-3 3-3s3 1.343 3 3c0 1.371-.92 2.527-2.176 2.885C19.21 20.252 17.059 22 14.5 22 11.462 22 9 19.538 9 16.5v-1.583C6.162 14.441 4 11.973 4 9V4c0-.552.448-1 1-1h3zm11 11c-.552 0-1 .448-1 1s.448 1 1 1 1-.448 1-1-.448-1-1-1z"/> </g> </svg>
+                    <span class="flex-1 ml-3 whitespace-nowrap">Docteurs</span>
+                </a>
+            </li>
+            <li>
+                <a href="Consultations.php" class="w-full flex items-center text-white hover:cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-check-fill flex-shrink-0 w-6 h-6 text-white transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" viewBox="0 0 16 16">
+                        <path d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4V.5zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2zm-5.146-5.146-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708.708z"/>
+                    </svg>
+                    <span class="flex-1 ml-3 whitespace-nowrap">Consultations</span>
+                </a>
+            </li>
+            <li>
+                <a href="Job.php" class="w-full flex items-center text-white hover:cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-briefcase-fill flex-shrink-0 w-6 h-6 text-white transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" viewBox="0 0 16 16">
+                        <path d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v1.384l7.614 2.03a1.5 1.5 0 0 0 .772 0L16 5.884V4.5A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1h-3zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5z"/>
+                        <path d="M0 12.5A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5V6.85L8.129 8.947a.5.5 0 0 1-.258 0L0 6.85v5.65z"/>
+                    </svg>
+                        <span class="flex-1 ml-3 whitespace-nowrap">Job</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+        <p class="fixed text-sm bottom-0">© Medica  2022 Nathan Barbier et Enzo Daval</p>
+</aside>

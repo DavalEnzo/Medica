@@ -1,4 +1,5 @@
 <?php
+$title = "Medica - Jobs";
 require_once "entete.php";
 
 use \AirTable\DataTransformer\JobDataTransformer;
