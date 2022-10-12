@@ -3,6 +3,15 @@
 </body>
 
 </html>
+<!--<script type="text/javascript">-->
+<!--    function showModals(idAirTable, table) {-->
+<!--        let id = idAirTable;-->
+<!--        let airTable = table;-->
+<!---->
+<!--        console.log(id, airTable);-->
+<!--    }-->
+<!---->
+<!--</script>-->
 
 <script type="text/javascript" src="../index.js"></script>
 <script src="https://cdn.tailwindcss.com"></script>

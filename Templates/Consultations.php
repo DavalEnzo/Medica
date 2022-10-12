@@ -1,5 +1,4 @@
 <?php
-
 use \AirTable\Repository\ConsultationRepository;
 use \AirTable\DataTransformer\ConsultationDataTransformer;
 use \AirTable\Repository\PatientRepository;

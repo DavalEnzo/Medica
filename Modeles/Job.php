@@ -68,6 +68,7 @@ class Job
     /**
      * @param array $doctors
      */
+
     public function setDoctors(array $doctors): void
     {
         $this->doctors = $doctors;

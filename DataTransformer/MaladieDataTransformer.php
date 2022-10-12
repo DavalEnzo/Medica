@@ -25,6 +25,7 @@ class MaladieDataTransformer
 
         foreach ($diseases->{"records"} as $disease) {
             $modele = new Maladie();
+            $modele->setIdAirTable($disease->{"id"});
             $modele->setName($disease->{"fields"}->{"Name"});
             $modele->setDescription($disease->{"fields"}->{"Description"});
             $modele->setPatientsLastname($disease->{"fields"}->{"Patients_Lastname"});
