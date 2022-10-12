@@ -11,6 +11,8 @@ $id = 1;
 ?>
 
 <div class="bg-blue-200 py-12 px-44 grid gap-4 w-full">
+
+
     <h1 class="text-6xl text-center underline font-semibold my-2">Liste des patients</h1>
 
     <div class="container mx-auto mt-5">

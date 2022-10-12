@@ -30,7 +30,7 @@ $jobs = $dto->transformJobs();
             <div class="my-5 bg-white border rounded-lg flex p-5 justify-around shadow-lg shadow-black">
                 <div class="text-center my-auto text-2xl">
                     <p><?= $job->getId(); ?></p>
-                </div>
+                </div>  
                 <div class="text-center my-auto text-2xl w-1/4">
                     <h2> <?= $job->getName(); ?> </h2>
                 </div>

@@ -20,7 +20,6 @@ class JobDataTransformer
     public function transformJobs() {
         $jobs = $this->jobRepository->getJobs();
         $id = 0;
-
         $modeles = [];
 
         foreach ($jobs->{"records"} as $job) {

@@ -1,5 +1,6 @@
 <?php
 
+require_once '../Repository/Repository.php';
 require_once '../Modeles/Maladie.php';
 require_once '../Repository/MaladieRepository.php';
 require_once '../DataTransformer/MaladieDataTransformer.php';
@@ -14,7 +15,8 @@ require_once '../Repository/ConsultationRepository.php';
 require_once '../DataTransformer/ConsultationDataTransformer.php';
 require_once '../Modeles/Job.php';
 require_once '../Repository/JobRepository.php';
-require_once '../DataTransformer/JobDataTransformer.php'
+require_once '../DataTransformer/JobDataTransformer.php';
+
 ?>
 
 <!doctype html>

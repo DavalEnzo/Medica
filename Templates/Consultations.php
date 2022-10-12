@@ -12,19 +12,19 @@ $consultations = $dto->transformConsultations();
     </div>
 
     <div class="my-5 bg-white border rounded-lg flex p-5 justify-around shadow-lg shadow-black">
-        <div class="text-center my-auto text-2xl w-1/6">
+        <div class="text-center my-auto text-2xl w-1/5">
             <p>Id</p>
         </div>
-        <div class="text-center my-auto text-2xl w-1/6">
+        <div class="text-center my-auto text-2xl w-1/5">
             <h2> Date </h2>
         </div>
-        <div class="text-center my-auto text-2xl w-1/6">
+        <div class="text-center my-auto text-2xl w-1/5">
             <h2> Patient</h2>
         </div>
-        <div class="text-center my-auto text-2xl w-1/6">
+        <div class="text-center my-auto text-2xl w-1/5">
             <h2> Maladies</h2>
         </div>
-        <div class="text-center my-auto text-2xl w-1/6">
+        <div class="text-center my-auto text-2xl w-1/5">
             <h2> Docteur</h2>
         </div>
 
