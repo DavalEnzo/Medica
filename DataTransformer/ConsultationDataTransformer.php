@@ -30,6 +30,7 @@ class ConsultationDataTransformer
             $modele->setLastname($consultation->{"fields"}->{"Lastname"});
             $modele->setDiseases($consultation->{"fields"}->{"Diseases"});
             $modele->setDoctorName($consultation->{"fields"}->{"Doctor_name"});
+            $modele->setIdAirTable($consultation->{"id"});
             $modele->setId(++$id);
 
             $modeles[] = $modele;
