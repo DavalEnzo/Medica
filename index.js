@@ -116,32 +116,6 @@ function getApiJob(id, table) {
     })
 }
 
-function getApiDoctor(id, table) {
-    const URL = getApiView(id, table)
-
-    const header = {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json'},
-    }
-    fetch(URL, header)
-        .then((response) => {
-            if(response.ok) {
-                response.json().then((data) => {
-                    console.log(data);
-                    document.getElementById("DoctorFirstname").value = data['fields']['Firstname'];
-                    document.getElementById("DoctorLastname").value = data['fields']['Lastname'];
-                    Array.prototype.forEach(data['fields']['Jobs_Name'],
-                        element => document.getElementById(element).checked = true);
-                    document.getElementById('DoctorId').value = id;
-                })
-            } else {
-                console.log(response);
-            }
-        }).catch((e) =>{
-        console.log(e)
-    })
-}
-
 function modifierJob(table) {
     let name = document.getElementById('jobName').value;
     let id = document.getElementById('jobId').value;
