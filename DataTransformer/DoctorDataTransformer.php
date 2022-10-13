@@ -28,6 +28,7 @@ class DoctorDataTransformer
             $modele->setFirstname($doctor->{"fields"}->{"Firstname"});
             $modele->setLastname($doctor->{"fields"}->{"Lastname"});
             $modele->setJobs($doctor->{"fields"}->{"Jobs_Name"});
+            $modele->setIdAirTable($doctor->{"id"});
             $modele->setId(++$id);
 
             $modeles[] = $modele;

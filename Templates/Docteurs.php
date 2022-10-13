@@ -4,14 +4,23 @@ require_once "entete.php";
 
 use \AirTable\DataTransformer\DoctorDataTransformer;
 use \AirTable\Repository\DoctorRepository;
+use \AirTable\DataTransformer\JobDataTransformer;
+use \AirTable\Repository\JobRepository;
 
 $dto = new DoctorDataTransformer(new DoctorRepository());
 $doctors = $dto->transformDoctors();
+
+$dto = new JobDataTransformer(new JobRepository());
+$jobs = $dto->transformJobsName();
+
+include_once "ModalDocteur.php"
 ?>
-    <div class="pl-80 bg-gray-50 dark:bg-gray-500 py-8 px-12 grid gap-4 w-full h-screen">
-        <div class="w-full text-center text-3xl">
-            <h2 class="text-4xl font-bold dark:text-white text-shadow">Les Docteurs</h2>
-        </div>
+<div class="pl-80 bg-gray-50 dark:bg-gray-500 py-8 grid px-12 w-full h-screen">
+    <div class="w-full text-center text-3xl">
+        <h2 class="text-4xl font-bold dark:text-white text-shadow my-10">
+            Les Docteurs
+        </h2>
+    </div>
 
         <div class="overflow-x-auto rounded-lg">
             <table class="w-full text-xl text-left text-gray-300 dark:text-gray-200">
@@ -49,12 +58,14 @@ $doctors = $dto->transformDoctors();
                             <h2> <?= $doctor->getLastname(); ?> </h2>
                         </td>
                         <td class="py-4 px-6">
-                            <h2> <?= implode(", ", $doctor->getNames()); ?> </h2>
+                            <h2> <?= implode(", ", $doctor->getJobs()); ?> </h2>
                         </td>
                         <td class="py-4 px-6">
                             <div>
                                 <button type="button"
-                                        class="text-white bg-blue-700 hover:bg-blue-800 hover:ring-2 hover:ring-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                        class="text-white bg-blue-700 hover:bg-blue-800 hover:ring-2 hover:ring-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                                        onclick="getApiDoctor('<?= $doctor->getIdAirTable(); ?>', 'Consultations')"
+                                        data-modal-toggle="defaultModal">
                                     Modifier
                                 </button>
                                 <button type="button"
