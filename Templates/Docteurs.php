@@ -1,11 +1,13 @@
 <?php
-$title = "Medica - Docteurs";
-require_once "entete.php";
-
 use \AirTable\DataTransformer\DoctorDataTransformer;
 use \AirTable\Repository\DoctorRepository;
 use \AirTable\DataTransformer\JobDataTransformer;
 use \AirTable\Repository\JobRepository;
+
+$title = "Medica - Docteurs";
+$self = "Doctors";
+
+require_once "entete.php";
 
 $dto = new DoctorDataTransformer(new DoctorRepository());
 $doctors = $dto->transformDoctors();
@@ -13,7 +15,8 @@ $doctors = $dto->transformDoctors();
 $dto = new JobDataTransformer(new JobRepository());
 $jobs = $dto->transformJobsName();
 
-include_once "Modal/Update/ModalUpdateDocteur.php"
+include_once "Modal/Update/ModalUpdateDocteur.php";
+include_once "Modal/Delete/ModalDelete.php";
 ?>
 <div class="pl-80 bg-gray-50 dark:bg-gray-500 py-8 grid px-12 w-full h-screen">
     <div class="w-full text-center text-3xl">
@@ -64,11 +67,13 @@ include_once "Modal/Update/ModalUpdateDocteur.php"
                             <div>
                                 <button type="button"
                                         class="text-white bg-blue-700 hover:bg-blue-800 hover:ring-2 hover:ring-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-                                        onclick="getApiDoctor('<?= $doctor->getIdAirTable(); ?>', 'Consultations')"
+                                        onclick="getApiDoctor('<?= $doctor->getIdAirTable(); ?>', <?=$self?>)"
                                         data-modal-toggle="defaultModal">
                                     Modifier
                                 </button>
                                 <button type="button"
+                                        data-modal-toggle="popup-modal"
+                                        onclick="confirmationDeleteDoctor('<?=$doctor->getIdAirTable();?>', '<?=$doctor->getFirstname();?>' + ' ' + '<?=$doctor->getLastname();?>')"
                                         class="focus:outline-none text-white bg-red-700 hover:bg-red-800 hover:ring-2 hover:ring-red-500 font-medium rounded-lg text-sm px-5 py-2.5  mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
                                     Supprimer
                                 </button>

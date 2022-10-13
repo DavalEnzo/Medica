@@ -7,8 +7,10 @@ use \AirTable\Repository\DoctorRepository;
 use \AirTable\DataTransformer\DoctorDataTransformer;
 
 $title = "Medica - Consultations";
+$self = "Consultations";
 
 require_once "entete.php";
+
 $dto = new ConsultationDataTransformer(new ConsultationRepository());
 $consultations = $dto->transformConsultations();
 
@@ -19,6 +21,7 @@ $dto = new DoctorDataTransformer(new DoctorRepository());
 $doctorsName = $dto->transformDoctorsName();
 
 include_once "Modal/Update/ModalUpdateConsultation.php";
+include_once "Modal/Delete/ModalDelete.php";
 ?>
 <div class="pl-80 bg-gray-50 dark:bg-gray-500 py-8 grid px-12 w-full h-screen">
     <div class="w-full text-center text-3xl">
@@ -26,65 +29,6 @@ include_once "Modal/Update/ModalUpdateConsultation.php";
             Les Consultations
         </h2>
     </div>
-
-    <!-- Pour les filtres -->
-    <!--  <div class="overflow-x-auto relative rounded-lg">-->
-    <!--        <table class="w-full text-xl text-left text-gray-500 dark:text-gray-400">-->
-    <!--            <tbody class="text-xl text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">-->
-    <!--            <tr>-->
-    <!--                <th scope="col" class="p-4">-->
-    <!--                    <div class="flex items-center">-->
-    <!--                        <input id="checkbox-all-search" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">-->
-    <!--                        <label for="checkbox-all-search" class="sr-only">checkbox</label>-->
-    <!--                        <div class="px-6">-->
-    <!--                            ID-->
-    <!--                        </div>-->
-    <!--                    </div>-->
-    <!--                </th>-->
-    <!---->
-    <!--                <th scope="col" class="p-4">-->
-    <!--                    <div class="flex items-center">-->
-    <!--                        <input id="checkbox-all-search" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">-->
-    <!--                        <label for="checkbox-all-search" class="sr-only">checkbox</label>-->
-    <!--                        <div class="px-6">-->
-    <!--                            DATES-->
-    <!--                        </div>-->
-    <!--                    </div>-->
-    <!--                </th>-->
-    <!---->
-    <!--                <th scope="col" class="p-4">-->
-    <!--                    <div class="flex items-center">-->
-    <!--                        <input id="checkbox-all-search" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">-->
-    <!--                        <label for="checkbox-all-search" class="sr-only">checkbox</label>-->
-    <!--                        <div class="px-6">-->
-    <!--                            PATIENTS-->
-    <!--                        </div>-->
-    <!--                    </div>-->
-    <!--                </th>-->
-    <!---->
-    <!--                <th scope="col" class="p-4">-->
-    <!--                    <div class="flex items-center">-->
-    <!--                        <input id="checkbox-all-search" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">-->
-    <!--                        <label for="checkbox-all-search" class="sr-only">checkbox</label>-->
-    <!--                        <div class="px-6">-->
-    <!--                            MALADIES-->
-    <!--                        </div>-->
-    <!--                    </div>-->
-    <!--                </th>-->
-    <!---->
-    <!--                <th scope="col" class="p-4">-->
-    <!--                    <div class="flex items-center">-->
-    <!--                        <input id="checkbox-all-search" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">-->
-    <!--                        <label for="checkbox-all-search" class="sr-only">checkbox</label>-->
-    <!--                        <div class="px-6">-->
-    <!--                            DOCTEUR-->
-    <!--                        </div>-->
-    <!--                    </div>-->
-    <!--                </th>-->
-    <!--            </tr>-->
-    <!--            </tbody>-->
-    <!--        </table>-->
-    <!--    </div>-->
 
     <div class="overflow-x-auto relative sm:rounded-lg">
         <table class="w-full text-xl text-left text-gray-300 dark:text-gray-200">
@@ -135,11 +79,13 @@ include_once "Modal/Update/ModalUpdateConsultation.php";
                         <div class="float-right">
                             <button type="button"
                                     class="text-white bg-blue-700 hover:bg-blue-800 hover:ring-2 hover:ring-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-                                    onclick="getApiConsultation('<?= $consultation->getIdAirTable(); ?>', 'Consultations')"
+                                    onclick="getApiConsultation('<?= $consultation->getIdAirTable(); ?>', <?=$self?>)"
                                     data-modal-toggle="defaultModal">
                                 Modifier
                             </button>
                             <button type="button"
+                                    data-modal-toggle="popup-modal"
+                                    onclick="confirmationDeleteConsultation('<?=$consultation->getIdAirTable();?>')"
                                     class="focus:outline-none text-white bg-red-700 hover:bg-red-800 hover:ring-2 hover:ring-red-500 font-medium rounded-lg text-sm px-5 py-2.5  mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
                                 Supprimer
                             </button>
