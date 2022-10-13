@@ -4,58 +4,58 @@ namespace AirTable\Modeles;
 
 class Consultation
 {
-    protected int $id;
-    protected string $idAirTable;
-    protected string $date;
-    protected array $firstname = [];
-    protected array $lastname = [];
+    protected ?int $id = null;
+    protected ?string $idAirTable = null;
+    protected ?string $date = null;
+    protected array $patientsFirstname = [];
+    protected array $patientsLastname = [];
     protected array $diseases = [];
     protected array $doctorName = [];
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
 
     /**
-     * @param int $id
+     * @param int|null $id
      */
-    public function setId(int $id): void
+    public function setId(?int $id): void
     {
         $this->id = $id;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getIdAirTable(): string
+    public function getIdAirTable(): ?string
     {
         return $this->idAirTable;
     }
 
     /**
-     * @param string $idAirTable
+     * @param string|null $idAirTable
      */
-    public function setIdAirTable(string $idAirTable): void
+    public function setIdAirTable(?string $idAirTable): void
     {
         $this->idAirTable = $idAirTable;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getDate(): string
+    public function getDate(): ?string
     {
         return $this->date;
     }
 
     /**
-     * @param string $date
+     * @param string|null $date
      */
-    public function setDate(string $date): void
+    public function setDate(?string $date): void
     {
         $this->date = $date;
     }
@@ -63,33 +63,33 @@ class Consultation
     /**
      * @return array
      */
-    public function getFirstname(): array
+    public function getPatientsFirstname(): array
     {
-        return $this->firstname;
+        return $this->patientsFirstname;
     }
 
     /**
-     * @param array $firstname
+     * @param array $patientsFirstname
      */
-    public function setFirstname(array $firstname): void
+    public function setPatientsFirstname(array $patientsFirstname): void
     {
-        $this->firstname = $firstname;
+        $this->patientsFirstname = $patientsFirstname;
     }
 
     /**
      * @return array
      */
-    public function getLastname(): array
+    public function getPatientsLastname(): array
     {
-        return $this->lastname;
+        return $this->patientsLastname;
     }
 
     /**
-     * @param array $lastname
+     * @param array $patientsLastname
      */
-    public function setLastname(array $lastname): void
+    public function setPatientsLastname(array $patientsLastname): void
     {
-        $this->lastname = $lastname;
+        $this->patientsLastname = $patientsLastname;
     }
 
     /**
@@ -123,4 +123,5 @@ class Consultation
     {
         $this->doctorName = $doctorName;
     }
+
 }
