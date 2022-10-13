@@ -25,11 +25,28 @@ class MaladieDataTransformer
 
         foreach ($diseases->{"records"} as $disease) {
             $modele = new Maladie();
-            $modele->setIdAirTable($disease->{"id"});
             $modele->setName($disease->{"fields"}->{"Name"});
             $modele->setDescription($disease->{"fields"}->{"Description"});
             $modele->setPatientsLastname($disease->{"fields"}->{"Patients_Lastname"});
             $modele->setPatientsFirstname($disease->{"fields"}->{"Patients_Firstname"});
+            $modele->setIdAirTable($disease->{"id"});
+            $modele->setId(++$id);
+
+            $modeles[] = $modele;
+        }
+
+        return $modeles;
+    }
+
+    public function transformDiseasesName() {
+        $diseases = $this->maladieRepository->getDiseasesName();
+        $id = 0;
+
+        $modeles = [];
+
+        foreach ($diseases->{"records"} as $disease) {
+            $modele = new Maladie();
+            $modele->setName($disease->{"fields"}->{"Name"});
             $modele->setIdAirTable($disease->{"id"});
             $modele->setId(++$id);
 

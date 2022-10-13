@@ -30,7 +30,7 @@
                             <?php
                             foreach ($patientsName as $patientName) {
                                 ?>
-                                <option value="<?= $patientName->getIdAirTable(); ?>"><?= $patientName->getFirstname() . " " . $patientName->getLastname();?></option>
+                                <option value="<?= $patientName->getIdAirTable(); ?>"><?= $patientName->getFirstname() . " ModalUpdateConsultation.php" . $patientName->getLastname();?></option>
                             <?php } ?>
                         </select>
                     </div>
@@ -40,7 +40,7 @@
                             <?php
                             foreach ($doctorsName as $doctorName) {
                                 ?>
-                                <option value="<?= $doctorName->getIdAirTable(); ?>"><?= $doctorName->getFirstname() . " " . $doctorName->getLastname();?></option>
+                                <option value="<?= $doctorName->getIdAirTable(); ?>"><?= $doctorName->getFirstname() . " ModalUpdateConsultation.php" . $doctorName->getLastname();?></option>
                             <?php } ?>
                         </select>
                     </div>
@@ -69,7 +69,7 @@
             <div class=" p-6 space-x-2 rounded-b border-t border-gray-200 dark:border-gray-600">
                 <input type="text" id="consultationId" class="hidden">
                 <div class="w-1/4">
-                    <button type="button" onclick="modifierConsultation('Consultations')"
+                    <button type="button" onclick="updateConsultation('Consultations')"
                             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         Modifier
                     </button>

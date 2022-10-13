@@ -13,7 +13,7 @@ $doctors = $dto->transformDoctors();
 $dto = new JobDataTransformer(new JobRepository());
 $jobs = $dto->transformJobsName();
 
-include_once "Modal/ModalDocteur.php"
+include_once "Modal/Update/ModalUpdateDocteur.php"
 ?>
 <div class="pl-80 bg-gray-50 dark:bg-gray-500 py-8 grid px-12 w-full h-screen">
     <div class="w-full text-center text-3xl">

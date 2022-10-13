@@ -21,6 +21,35 @@ function getApiTable(table) {
     return `https://api.airtable.com/v0/appMxtIo1QNXAobOO/` + table + `?api_key=${API_KEY}`
 }
 
+function deleteRow(table) {
+    const id = document.getElementById("suppression").value;
+    if(id != " ") {
+        deleteApi(id, table)
+    }
+}
+
+function deleteApi(id, table) {
+    const API_KEY = "keyoVQjZ08H4oQBSO";
+    const URL = `https://api.airtable.com/v0/appMxtIo1QNXAobOO/`  + table + `/` + id + `?api_key=${API_KEY}`;
+
+    const header = {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json'},
+    }
+
+    fetch(URL, header)
+        .then((response) => {
+            console.log(response);
+            if(response.ok) {
+                location.reload();
+            } else {
+                console.log(response);
+            }
+        }).catch((e) =>{
+        console.log(e)
+    })
+}
+
 function getApiConsultation(id, table) {
     const URL = getApiView(id, table)
 
@@ -62,7 +91,7 @@ function getApiConsultation(id, table) {
     })
 }
 
-function modifierConsultation(table) {
+function updateConsultation(table) {
     let patient = document.getElementById('patientName').value;
     let docteur = document.getElementById('doctorName').value;
     let date = document.getElementById('dateTime').value;
@@ -116,7 +145,7 @@ function getApiJob(id, table) {
     })
 }
 
-function modifierJob(table) {
+function updateJob(table) {
     let name = document.getElementById('jobName').value;
     let id = document.getElementById('jobId').value;
 
@@ -171,14 +200,14 @@ function getApiDoctor(id, table) {
     })
 }
 
-function modifierDoctor(table) {
+function updateDoctor(table) {
     let jobs = document.getElementsByClassName('job-checkbox');
     let id = document.getElementById('DoctorId').value;
     let firstname = document.getElementById('DoctorFirstname').value;
     let lastname = document.getElementById('DoctorLastname').value;
     let jobsUpdate = [];
 
-    for (i=0; i < jobs.length; i++)
+    for (let i=0; i < jobs.length; i++)
     {
         if (jobs[i].checked) {
             jobsUpdate.push(jobs[i].id)
@@ -233,7 +262,7 @@ function getApiDisease(id, table) {
     })
 }
 
-function modifierDisease(table) {
+function updateDisease(table) {
     let name = document.getElementById('DiseaseName').value;
     let description = document.getElementById('DiseaseDescription').value;
     let id = document.getElementById('DiseaseId').value;
@@ -263,4 +292,94 @@ function modifierDisease(table) {
         }).catch((e) =>{
         console.log(e)
     })
+}
+
+function getApiPatient(id, table) {
+    const URL = getApiView(id, table)
+
+    fetch(URL, getHeaderGet())
+        .then((response) => {
+            if(response.ok) {
+                response.json().then((data) => {
+                    console.log(data);
+                    document.getElementById("PatientAge").value = data['fields']['Age'];
+                    document.getElementById("PatientBlood").value = data['fields']['Blood_type'];
+                    document.getElementById('PatientCity').value = data['fields']['City'];
+                    document.getElementById('PatientCountry').value = data['fields']['Country'];
+                    document.getElementById('PatientEmail').value = data['fields']['Email'];
+                    document.getElementById('PatientFirstname').value = data['fields']['Firstname'];
+                    document.getElementById('PatientLastname').value = data['fields']['Lastname'];
+                    document.getElementById('PatientPhone').value = data['fields']['Phone'];
+                    data['fields']['Diseases'].forEach(element =>
+                        document.getElementById(element).checked = true
+                    )
+                    document.getElementById('PatientId').value = id
+                })
+            } else {
+                console.log(response);
+            }
+        }).catch((e) =>{
+        console.log(e)
+    })
+}
+
+function updatePatient(table) {
+    let age = document.getElementById("PatientAge").value;
+    let blood = document.getElementById("PatientBlood").value;
+    let city = document.getElementById('PatientCity').value;
+    let country = document.getElementById('PatientCountry').value;
+    let email = document.getElementById('PatientEmail').value;
+    let diseases = document.getElementsByClassName('patient-checkbox');
+    let firstname = document.getElementById('PatientFirstname').value;
+    let lastname = document.getElementById('PatientLastname').value ;
+    let phone = document.getElementById('PatientPhone').value;
+    let id = document.getElementById('PatientId').value;
+
+    let diseasesUpdate = [];
+
+    for (let i=0; i < diseases.length; i++)
+    {
+        if (diseases[i].checked) {
+            diseasesUpdate.push(diseases[i].id)
+        }
+    }
+
+    const URL = getApiTable(table)
+    console.log(URL)
+    const data = {
+        "records": [
+            {
+                "id": id,
+                "fields": {
+                    "Age": age,
+                    "Blood_type": blood,
+                    "City": city,
+                    "Country": country,
+                    "Diseases": diseasesUpdate,
+                    "Email": email,
+                    "Firstname": firstname,
+                    "Lastname": lastname,
+                    "Phone": phone,
+                }
+            }
+        ]
+    }
+
+    fetch(URL, getHeaderPatch(data))
+        .then((response) => {
+            if(response.ok) {
+                response.json().then((data) => {
+                    location.reload();
+                })
+            } else {
+                console.log(response);
+            }
+        }).catch((e) =>{
+        console.log(e)
+    })
+}
+
+function confirmationDelete(id, nomPatient) {
+    document.getElementById("suppression").value = id;
+    document.getElementById("nomPatient").innerHTML ="Êtes-vous sûr de vouloir supprimer le patient " + nomPatient + " ?";
 }
