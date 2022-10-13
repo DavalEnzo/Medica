@@ -14,7 +14,7 @@ include_once "Modal/Update/ModalUpdateJob.php";
 include_once "Modal/Delete/ModalDelete.php";
 
 ?>
-<div class="pl-80 bg-gray-50 dark:bg-gray-500 py-8 px-12 w-full h-screen">
+<div class="pl-80 bg-gray-50 dark:bg-gray-500 py-8 px-12 grid w-full h-screen">
     <div class="w-full text-center text-3xl">
         <h2 class="text-4xl font-bold dark:text-white text-shadow my-10">
             Les Métiers
@@ -59,7 +59,7 @@ include_once "Modal/Delete/ModalDelete.php";
                             <button type="button"
                                     class="text-white bg-blue-700 hover:bg-blue-800 hover:ring-2 hover:ring-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                                     onclick="getApiJob('<?= $job->getIdAirTable(); ?>', '<?=$self?>')"
-                                    data-modal-toggle="defaultModal">
+                                    data-modal-toggle="updateModal">
                                 Modifier
                             </button>
                             <button type="button"

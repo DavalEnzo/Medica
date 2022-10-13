@@ -403,3 +403,29 @@ function confirmationDeletePatient(id, nomPatient) {
     document.getElementById("suppression").value = id;
     document.getElementById("message").innerHTML ="Êtes-vous sûr de vouloir supprimer le patient " + nomPatient + " ?";
 }
+
+function createPatient() {
+    let array = [
+        age = document.getElementById('CreatePatientAge'),
+        blood = document.getElementById('CreatePatientBlood'),
+        city = document.getElementById('CreatePatientCity'),
+        country = document.getElementById('CreatePatientCountry'),
+        email = document.getElementById('CreatePatientEmail'),
+        firstname = document.getElementById('CreatePatientFirstname'),
+        lastname = document.getElementById('CreatePatientLastname'),
+        phone = document.getElementById('CreatePatientPhone'),
+    ];
+    let error = 0;
+    let diseases = document.getElementsByClassName('Createpatient-checkbox');
+
+    for (let i=0; i < array.length; i++)
+    {
+        if (array[i].value === "") {
+            error++;
+            console.log(array[i].id + 'Error')
+            document.getElementById(array[i].id + 'Error').innerHTML = '* Champ invalide';
+        } else {
+            document.getElementById(array[i].id + 'Error').value = '';
+        }
+    }
+}
