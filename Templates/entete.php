@@ -40,7 +40,7 @@ require_once '../DataTransformer/JobDataTransformer.php';
         </div>
         <ul class="space-y-8">
             <li class="hover:bg-gray-500 rounded-lg hover: transition ease-in-out hover:bg-opacity-50 duration-700">
-                <a href="Patient.php" class="w-full flex items-center text-white hover:cursor-pointer">
+                <a href="Patients.php" class="w-full flex items-center text-white hover:cursor-pointer">
                     <svg aria-hidden="true"
                          class="flex-shrink-0 w-6 h-6 text-white transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                          fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -84,7 +84,7 @@ require_once '../DataTransformer/JobDataTransformer.php';
                 </a>
             </li>
             <li class="hover:bg-gray-500 rounded-lg hover: transition ease-in-out hover:bg-opacity-50 duration-700">
-                <a href="Job.php" class="w-full flex items-center text-white hover:cursor-pointer">
+                <a href="Jobs.php" class="w-full flex items-center text-white hover:cursor-pointer">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                          class="bi bi-briefcase-fill flex-shrink-0 w-6 h-6 text-white transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                          viewBox="0 0 16 16">

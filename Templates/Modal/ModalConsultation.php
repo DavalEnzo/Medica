@@ -30,7 +30,7 @@
                             <?php
                             foreach ($patientsName as $patientName) {
                                 ?>
-                                <option value="<?= $patientName->getIdAirTable(); ?>"><?= $patientName->getFirstname() . " ModalConsultation.php" . $patientName->getLastname();?></option>
+                                <option value="<?= $patientName->getIdAirTable(); ?>"><?= $patientName->getFirstname() . " " . $patientName->getLastname();?></option>
                             <?php } ?>
                         </select>
                     </div>
@@ -40,7 +40,7 @@
                             <?php
                             foreach ($doctorsName as $doctorName) {
                                 ?>
-                                <option value="<?= $doctorName->getIdAirTable(); ?>"><?= $doctorName->getFirstname() . " ModalConsultation.php" . $doctorName->getLastname();?></option>
+                                <option value="<?= $doctorName->getIdAirTable(); ?>"><?= $doctorName->getFirstname() . " " . $doctorName->getLastname();?></option>
                             <?php } ?>
                         </select>
                     </div>

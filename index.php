@@ -1,3 +1,3 @@
 <?php
-    header("location:Templates/Patient.php");
+    header("location:Templates/Patients.php");
 ?>

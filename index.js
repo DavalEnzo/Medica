@@ -212,3 +212,55 @@ function modifierDoctor(table) {
         console.log(e)
     })
 }
+
+function getApiDisease(id, table) {
+    const URL = getApiView(id, table)
+
+    fetch(URL, getHeaderGet())
+        .then((response) => {
+            if(response.ok) {
+                response.json().then((data) => {
+                    console.log(data);
+                    document.getElementById("DiseaseName").value = data['fields']['Name'];
+                    document.getElementById("DiseaseDescription").value = data['fields']['Description'];
+                    document.getElementById('DiseaseId').value = id
+                })
+            } else {
+                console.log(response);
+            }
+        }).catch((e) =>{
+        console.log(e)
+    })
+}
+
+function modifierDisease(table) {
+    let name = document.getElementById('DiseaseName').value;
+    let description = document.getElementById('DiseaseDescription').value;
+    let id = document.getElementById('DiseaseId').value;
+
+    const URL = getApiTable(table)
+    const data = {
+        "records": [
+            {
+                "id": id,
+                "fields": {
+                    "Name": name,
+                    "Description": description,
+                }
+            },
+        ]
+    }
+
+    fetch(URL, getHeaderPatch(data))
+        .then((response) => {
+            if(response.ok) {
+                response.json().then((data) => {
+                    location.reload();
+                })
+            } else {
+                console.log(response);
+            }
+        }).catch((e) =>{
+        console.log(e)
+    })
+}
