@@ -21,35 +21,6 @@ function getApiTable(table) {
     return `https://api.airtable.com/v0/appMxtIo1QNXAobOO/` + table + `?api_key=${API_KEY}`
 }
 
-function deleteRow(table) {
-    const id = document.getElementById("suppression").value;
-    if(id != " ") {
-        deleteApi(id, table)
-    }
-}
-
-function deleteApi(id, table) {
-    const API_KEY = "keyoVQjZ08H4oQBSO";
-    const URL = `https://api.airtable.com/v0/appMxtIo1QNXAobOO/`  + table + `/` + id + `?api_key=${API_KEY}`;
-
-    const header = {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json'},
-    }
-
-    fetch(URL, header)
-        .then((response) => {
-            console.log(response);
-            if(response.ok) {
-                location.reload();
-            } else {
-                console.log(response);
-            }
-        }).catch((e) =>{
-        console.log(e)
-    })
-}
-
 function getApiConsultation(id, table) {
     const URL = getApiView(id, table)
 
@@ -379,7 +350,56 @@ function updatePatient(table) {
     })
 }
 
-function confirmationDelete(id, nomPatient) {
+function deleteRow(table) {
+    const id = document.getElementById("suppression").value;
+    if(id != " ") {
+        deleteApi(id, table)
+    }
+}
+
+function deleteApi(id, table) {
+    const API_KEY = "keyoVQjZ08H4oQBSO";
+    const URL = `https://api.airtable.com/v0/appMxtIo1QNXAobOO/`  + table + `/` + id + `?api_key=${API_KEY}`;
+
+    const header = {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json'},
+    }
+
+    fetch(URL, header)
+        .then((response) => {
+            console.log(response);
+            if(response.ok) {
+                location.reload();
+            } else {
+                console.log(response);
+            }
+        }).catch((e) =>{
+        console.log(e)
+    })
+}
+
+function confirmationDeleteConsultation(id) {
     document.getElementById("suppression").value = id;
-    document.getElementById("nomPatient").innerHTML ="Êtes-vous sûr de vouloir supprimer le patient " + nomPatient + " ?";
+    document.getElementById("message").innerHTML ="Êtes-vous sûr de vouloir supprimer cette consultation ?";
+}
+
+function confirmationDeleteJob(id, nomJob) {
+    document.getElementById("suppression").value = id;
+    document.getElementById("message").innerHTML ="Êtes-vous sûr de vouloir supprimer le métier " + nomJob + " ?";
+}
+
+function confirmationDeleteDoctor(id, nomDoctor) {
+    document.getElementById("suppression").value = id;
+    document.getElementById("message").innerHTML ="Êtes-vous sûr de vouloir supprimer le docteur " + nomDoctor + " ?";
+}
+
+function confirmationDeleteDisease(id, nomMaladie) {
+    document.getElementById("suppression").value = id;
+    document.getElementById("message").innerHTML ="Êtes-vous sûr de vouloir supprimer la maladie " + nomMaladie + " ?";
+}
+
+function confirmationDeletePatient(id, nomPatient) {
+    document.getElementById("suppression").value = id;
+    document.getElementById("message").innerHTML ="Êtes-vous sûr de vouloir supprimer le patient " + nomPatient + " ?";
 }
