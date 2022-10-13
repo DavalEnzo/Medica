@@ -34,4 +34,21 @@ class JobDataTransformer
 
         return $modeles;
     }
+
+    public function transformJobsName() {
+        $jobs = $this->jobRepository->getJobsName();
+        $id = 0;
+        $modeles = [];
+
+        foreach ($jobs->{"records"} as $job) {
+            $modele = new Job();
+            $modele->setName($job->{"fields"}->{"Name"});
+            $modele->setIdAirTable($job->{"id"});
+            $modele->setId(++$id);
+
+            $modeles[] = $modele;
+        }
+
+        return $modeles;
+    }
 }

@@ -8,7 +8,7 @@ use \AirTable\Repository\JobRepository;
 $dto = new JobDataTransformer(new JobRepository());
 $jobs = $dto->transformJobs();
 
-include_once "ModalJob.php";
+include_once "Modal/ModalJob.php";
 ?>
 <div class="pl-80 bg-gray-50 dark:bg-gray-500 py-8 px-12 w-full h-screen">
     <div class="w-full text-center text-3xl">

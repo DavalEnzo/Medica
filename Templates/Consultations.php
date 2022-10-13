@@ -18,9 +18,9 @@ $patientsName = $dto->transformPatientsName();
 $dto = new DoctorDataTransformer(new DoctorRepository());
 $doctorsName = $dto->transformDoctorsName();
 
-include_once "ModalConsultation.php";
+include_once "Modal/ModalConsultation.php";
 ?>
-<div class="pl-80 bg-gray-50 dark:bg-gray-500 py-8 px-12 w-full h-screen">
+<div class="pl-80 bg-gray-50 dark:bg-gray-500 py-8 grid px-12 w-full h-screen">
     <div class="w-full text-center text-3xl">
         <h2 class="text-4xl font-bold dark:text-white text-shadow my-10">
             Les Consultations
