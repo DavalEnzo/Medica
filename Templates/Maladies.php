@@ -7,8 +7,9 @@ use \AirTable\Repository\MaladieRepository;
 
 $dto = new MaladieDataTransformer(new MaladieRepository());
 $diseases = $dto->transformDiseases();
-?>
 
+include_once "Modal/ModalMaladie.php";
+?>
 
 <div class="pl-80 bg-gray-50 dark:bg-gray-500 py-8 px-12 grid gap-4 w-full h-screen">
     <div class="w-full text-center text-3xl">
@@ -50,7 +51,9 @@ $diseases = $dto->transformDiseases();
                     <td class="py-4 px-6">
                         <div>
                             <button type="button"
-                                    class="text-white bg-blue-700 hover:bg-blue-800 hover:ring-2 hover:ring-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                    class="text-white bg-blue-700 hover:bg-blue-800 hover:ring-2 hover:ring-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                                    onclick="getApiDisease('<?= $disease->getIdAirTable(); ?>', 'Jobs')"
+                                    data-modal-toggle="defaultModal">
                                 Modifier
                             </button>
                             <button type="button"
