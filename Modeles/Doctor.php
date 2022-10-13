@@ -4,55 +4,72 @@ namespace AirTable\Modeles;
 
 class Doctor
 {
-    protected int $id;
-    protected string $firstname;
-    protected string $lastname;
-    protected array $names = [];
+    protected ?int $id = null;
+    protected ?string $idAirTable = null;
+    protected ?string $firstname = null;
+    protected ?string $lastname = null;
+    protected array $jobs = [];
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
 
     /**
-     * @param int $id
+     * @param int|null $id
      */
-    public function setId(int $id): void
+    public function setId(?int $id): void
     {
         $this->id = $id;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getFirstname(): string
+    public function getIdAirTable(): ?string
+    {
+        return $this->idAirTable;
+    }
+
+    /**
+     * @param string|null $idAirTable
+     */
+    public function setIdAirTable(?string $idAirTable): void
+    {
+        $this->idAirTable = $idAirTable;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFirstname(): ?string
     {
         return $this->firstname;
     }
 
     /**
-     * @param string $firstname
+     * @param string|null $firstname
      */
-    public function setFirstname(string $firstname): void
+    public function setFirstname(?string $firstname): void
     {
         $this->firstname = $firstname;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getLastname(): string
+    public function getLastname(): ?string
     {
         return $this->lastname;
     }
 
     /**
-     * @param string $lastname
+     * @param string|null $lastname
      */
-    public function setLastname(string $lastname): void
+    public function setLastname(?string $lastname): void
     {
         $this->lastname = $lastname;
     }
@@ -60,16 +77,16 @@ class Doctor
     /**
      * @return array
      */
-    public function getNames(): array
+    public function getJobs(): array
     {
-        return $this->names;
+        return $this->jobs;
     }
 
     /**
-     * @param array $names
+     * @param array $jobs
      */
-    public function setNames(array $names): void
+    public function setJobs(array $jobs): void
     {
-        $this->names = $names;
+        $this->jobs = $jobs;
     }
 }

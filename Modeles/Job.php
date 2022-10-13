@@ -4,38 +4,55 @@ namespace AirTable\Modeles;
 
 class Job
 {
-    protected int $id;
-    protected string $name;
+    protected ?int $id = null;
+    protected ?string $idAirTable = null;
+    protected ?string $name = null;
     protected array $doctors = [];
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
 
     /**
-     * @param int $id
+     * @param int|null $id
      */
-    public function setId(int $id): void
+    public function setId(?int $id): void
     {
         $this->id = $id;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getName(): string
+    public function getIdAirTable(): ?string
+    {
+        return $this->idAirTable;
+    }
+
+    /**
+     * @param string|null $idAirTable
+     */
+    public function setIdAirTable(?string $idAirTable): void
+    {
+        $this->idAirTable = $idAirTable;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getName(): ?string
     {
         return $this->name;
     }
 
     /**
-     * @param string $name
+     * @param string|null $name
      */
-    public function setName(string $name): void
+    public function setName(?string $name): void
     {
         $this->name = $name;
     }
@@ -45,14 +62,16 @@ class Job
      */
     public function getDoctors(): array
     {
-        return $this->doctor;
+        return $this->doctors;
     }
 
     /**
-     * @param array $doctor
+     * @param array $doctors
      */
-    public function setDoctors(array $doctor): void
+
+    public function setDoctors(array $doctors): void
     {
-        $this->doctor = $doctor;
+        $this->doctors = $doctors;
     }
+
 }

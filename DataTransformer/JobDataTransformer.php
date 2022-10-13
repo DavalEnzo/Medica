@@ -26,6 +26,7 @@ class JobDataTransformer
             $modele = new Job();
             $modele->setName($job->{"fields"}->{"Name"});
             $modele->setDoctors($job->{"fields"}->{"Lastname_doctor"});
+            $modele->setIdAirTable($job->{"id"});
             $modele->setId(++$id);
 
             $modeles[] = $modele;

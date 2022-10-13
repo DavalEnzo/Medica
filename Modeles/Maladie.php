@@ -4,57 +4,57 @@ namespace AirTable\Modeles;
 
 class Maladie
 {
-    protected int $id;
-    protected string $idAirTable;
-    protected string $name;
-    protected array $lastnames = [];
-    protected array $firstnames = [];
-    protected string $description;
+    protected ?int $id = null;
+    protected ?string $idAirTable = null;
+    protected ?string $name = null;
+    protected array $patientsLastname = [];
+    protected array $patientsFirstname = [];
+    protected ?string $description = null;
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
 
     /**
-     * @param int $id
+     * @param int|null $id
      */
-    public function setId(int $id): void
+    public function setId(?int $id): void
     {
         $this->id = $id;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getIdAirTable(): string
+    public function getIdAirTable(): ?string
     {
         return $this->idAirTable;
     }
 
     /**
-     * @param string $idAirTable
+     * @param string|null $idAirTable
      */
-    public function setIdAirTable(string $idAirTable): void
+    public function setIdAirTable(?string $idAirTable): void
     {
         $this->idAirTable = $idAirTable;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->name;
     }
 
     /**
-     * @param string $name
+     * @param string|null $name
      */
-    public function setName(string $name): void
+    public function setName(?string $name): void
     {
         $this->name = $name;
     }
@@ -62,50 +62,49 @@ class Maladie
     /**
      * @return array
      */
-    public function getLastnames(): array
+    public function getPatientsLastname(): array
     {
-        return $this->lastnames;
+        return $this->patientsLastname;
     }
 
     /**
-     * @param array $lastnames
+     * @param array $patientsLastname
      */
-    public function setLastnames(array $lastnames): void
+    public function setPatientsLastname(array $patientsLastname): void
     {
-        $this->lastnames = $lastnames;
+        $this->patientsLastname = $patientsLastname;
     }
 
     /**
      * @return array
      */
-    public function getFirstname(): array
+    public function getPatientsFirstname(): array
     {
-        return $this->firstnames;
+        return $this->patientsFirstname;
     }
 
     /**
-     * @param array $firstnames
+     * @param array $patientsFirstname
      */
-    public function setFirstnames(array $firstnames): void
+    public function setPatientsFirstname(array $patientsFirstname): void
     {
-        $this->firstnames = $firstnames;
+        $this->patientsFirstname = $patientsFirstname;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
 
     /**
-     * @param string $description
+     * @param string|null $description
      */
-    public function setDescription(string $description): void
+    public function setDescription(?string $description): void
     {
         $this->description = $description;
     }
-
-
 }
+

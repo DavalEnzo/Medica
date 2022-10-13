@@ -35,6 +35,26 @@ class PatientDataTransformer
             $modele->setDiseasesName($patient->{"fields"}->{"Diseases_name"});
             $modele->setCountry($patient->{"fields"}->{"Country"});
             $modele->setCity($patient->{"fields"}->{"City"});
+            $modele->setIdAirTable($patient->{"id"});
+            $modele->setId(++$id);
+
+            $modeles[] = $modele;
+        }
+
+        return $modeles;
+    }
+
+    public function transformPatientsName() {
+        $patients = $this->patientRepository->getPatientsName();
+        $id = 0;
+
+        $modeles = [];
+
+        foreach ($patients->{"records"} as $patient) {
+            $modele = new Patient();
+            $modele->setFirstname($patient->{"fields"}->{"Firstname"});
+            $modele->setLastname($patient->{"fields"}->{"Lastname"});
+            $modele->setIdAirTable($patient->{"id"});
             $modele->setId(++$id);
 
             $modeles[] = $modele;
