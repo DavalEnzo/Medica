@@ -10,17 +10,22 @@ require_once "entete.php";
 $dto = new JobDataTransformer(new JobRepository());
 $jobs = $dto->transformJobs();
 
-include_once "Modal/Update/ModalUpdateJob.php";
-include_once "Modal/Delete/ModalDelete.php";
+include_once "Modal/ModalJob.php";
+include_once "Modal/ModalDelete.php";
 
 ?>
-<div class="pl-80 bg-gray-50 dark:bg-gray-500 py-8 px-12 w-full h-screen">
+<div class="pl-80 bg-gray-50 dark:bg-gray-500 py-8 px-12 grid w-full h-screen">
     <div class="w-full text-center text-3xl">
         <h2 class="text-4xl font-bold dark:text-white text-shadow my-10">
             Les Métiers
         </h2>
     </div>
-
+    <button type="button"
+            class="text-white bg-green-700 hover:bg-green-800 hover:ring-2 hover:ring-green-500 font-medium rounded-lg text-xl px-5 py-2.5 mr-2 mb-5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800"
+            data-modal-toggle="jobModal"
+    >
+        Créer un job
+    </button>
     <div class="overflow-x-auto relative sm:rounded-lg">
         <table class="w-full text-xl text-left text-gray-300 dark:text-gray-200">
             <thead class="text-xl text-gray-300 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-300 sticky top-0">
@@ -52,14 +57,14 @@ include_once "Modal/Delete/ModalDelete.php";
                         <?= $job->getName(); ?>
                     </td>
                     <td class="py-4 px-6" id="maladies<?= $job->getId(); ?>">
-                        <?= implode(", ", $job->getDoctors()); ?>
+                        <?=$job->getDoctors() === null ? "" :   implode(", ", $job->getDoctors()); ?>
                     </td>
                     <td class="py-4 px-6">
                         <div class="float-right">
                             <button type="button"
                                     class="text-white bg-blue-700 hover:bg-blue-800 hover:ring-2 hover:ring-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                                     onclick="getApiJob('<?= $job->getIdAirTable(); ?>', '<?=$self?>')"
-                                    data-modal-toggle="defaultModal">
+                                    data-modal-toggle="jobModal">
                                 Modifier
                             </button>
                             <button type="button"

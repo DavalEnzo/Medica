@@ -15,8 +15,8 @@ $doctors = $dto->transformDoctors();
 $dto = new JobDataTransformer(new JobRepository());
 $jobs = $dto->transformJobsName();
 
-include_once "Modal/Update/ModalUpdateDocteur.php";
-include_once "Modal/Delete/ModalDelete.php";
+include_once "Modal/ModalDocteur.php";
+include_once "Modal/ModalDelete.php";
 ?>
 <div class="pl-80 bg-gray-50 dark:bg-gray-500 py-8 grid px-12 w-full h-screen">
     <div class="w-full text-center text-3xl">
@@ -61,14 +61,14 @@ include_once "Modal/Delete/ModalDelete.php";
                             <h2> <?= $doctor->getLastname(); ?> </h2>
                         </td>
                         <td class="py-4 px-6">
-                            <h2> <?= implode(", ", $doctor->getJobs()); ?> </h2>
+                            <h2> <?= $doctor->getJobs() === null ? "" :  implode(", ", $doctor->getJobs()); ?> </h2>
                         </td>
                         <td class="py-4 px-6">
                             <div>
                                 <button type="button"
                                         class="text-white bg-blue-700 hover:bg-blue-800 hover:ring-2 hover:ring-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                                         onclick="getApiDoctor('<?= $doctor->getIdAirTable(); ?>', '<?=$self?>')"
-                                        data-modal-toggle="defaultModal">
+                                        data-modal-toggle="updateModal">
                                     Modifier
                                 </button>
                                 <button type="button"

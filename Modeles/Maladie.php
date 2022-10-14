@@ -7,8 +7,8 @@ class Maladie
     protected ?int $id = null;
     protected ?string $idAirTable = null;
     protected ?string $name = null;
-    protected array $patientsLastname = [];
-    protected array $patientsFirstname = [];
+    protected ?array $patientsLastname = [];
+    protected ?array $patientsFirstname = [];
     protected ?string $description = null;
 
     /**
@@ -60,33 +60,33 @@ class Maladie
     }
 
     /**
-     * @return array
+     * @return array|null
      */
-    public function getPatientsLastname(): array
+    public function getPatientsLastname(): ?array
     {
         return $this->patientsLastname;
     }
 
     /**
-     * @param array $patientsLastname
+     * @param array|null $patientsLastname
      */
-    public function setPatientsLastname(array $patientsLastname): void
+    public function setPatientsLastname(?array $patientsLastname): void
     {
         $this->patientsLastname = $patientsLastname;
     }
 
     /**
-     * @return array
+     * @return array|null
      */
-    public function getPatientsFirstname(): array
+    public function getPatientsFirstname(): ?array
     {
         return $this->patientsFirstname;
     }
 
     /**
-     * @param array $patientsFirstname
+     * @param array|null $patientsFirstname
      */
-    public function setPatientsFirstname(array $patientsFirstname): void
+    public function setPatientsFirstname(?array $patientsFirstname): void
     {
         $this->patientsFirstname = $patientsFirstname;
     }
