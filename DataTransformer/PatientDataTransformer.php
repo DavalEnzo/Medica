@@ -32,7 +32,7 @@ class PatientDataTransformer
             $modele->setAge($patient->{"fields"}->{"Age"});
             $modele->setPhone($patient->{"fields"}->{"Phone"});
             $modele->setSanguinGroup($patient->{"fields"}->{"Blood_type"});
-            $modele->setDiseasesName($patient->{"fields"}->{"Diseases_name"});
+            $modele->setDiseasesName(!empty($patient->{"fields"}->{"Diseases_name"}) ? $patient->{"fields"}->{"Diseases_name"} : null);
             $modele->setCountry($patient->{"fields"}->{"Country"});
             $modele->setCity($patient->{"fields"}->{"City"});
             $modele->setIdAirTable($patient->{"id"});

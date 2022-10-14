@@ -12,7 +12,7 @@ class Patient
     protected ?int $age = null;
     protected ?string $phone = null;
     protected ?string $sanguin_group = null;
-    protected array $diseases_name = [];
+    protected ?array $diseases_name = [];
     protected ?string $country = null;
     protected ?string $city = null;
 
@@ -145,17 +145,17 @@ class Patient
     }
 
     /**
-     * @return array
+     * @return array|null
      */
-    public function getDiseasesName(): array
+    public function getDiseasesName(): ?array
     {
         return $this->diseases_name;
     }
 
     /**
-     * @param array $diseases_name
+     * @param array|null $diseases_name
      */
-    public function setDiseasesName(array $diseases_name): void
+    public function setDiseasesName(?array $diseases_name): void
     {
         $this->diseases_name = $diseases_name;
     }

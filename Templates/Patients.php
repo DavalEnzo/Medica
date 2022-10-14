@@ -18,9 +18,9 @@ $dto = new MaladieDataTransformer(new MaladieRepository());
 $diseases = $dto->transformDiseasesName();
 $id = 1;
 
-include_once "Modal/Create/ModalCreatePatient.php";
 include_once "Modal/Update/ModalUpdatePatient.php";
-include_once "Modal/Delete/ModalDelete.php";
+include_once "Modal/Create/ModalCreatePatient.php";
+include_once "Modal/ModalDelete.php";
 ?>
 
 <div class="pl-80 bg-gray-50 dark:bg-gray-500 py-8 px-12 grid gap-4 w-full h-screen">
@@ -94,7 +94,7 @@ include_once "Modal/Delete/ModalDelete.php";
                         <h2> <?= $patient->getCity(); ?>, <?= $patient->getCountry(); ?> </h2>
                     </td>
                     <td class="py-4 px-6">
-                        <h2> <?= implode(", ", $patient->getDiseasesName()); ?> </h2>
+                        <h2> <?= $patient->getDiseasesName() === null ? "" : implode(", ", $patient->getDiseasesName()); ?> </h2>
                     </td>
                     <td class="py-4 px-6">
                         <div>
@@ -121,7 +121,7 @@ include_once "Modal/Delete/ModalDelete.php";
                     class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                     <button type="button"
                             class="focus:outline-none text-white bg-green-700 hover:bg-green-800 hover:ring-2 hover:ring-green-500 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-900"
-                            data-modal-toggle="createModal">
+                            data-modal-toggle="createPatientModal">
                         + Ajouter
                     </button>
                 </th>

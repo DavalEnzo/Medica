@@ -10,8 +10,8 @@ require_once "entete.php";
 $dto = new MaladieDataTransformer(new MaladieRepository());
 $diseases = $dto->transformDiseases();
 
-include_once "Modal/Update/ModalUpdateMaladie.php";
-include_once "Modal/Delete/ModalDelete.php";
+include_once "Modal/ModalMaladie.php";
+include_once "Modal/ModalDelete.php";
 ?>
 
 <div class="pl-80 bg-gray-50 dark:bg-gray-500 py-8 px-12 grid gap-4 w-full h-screen">

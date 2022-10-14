@@ -7,7 +7,7 @@ class Job
     protected ?int $id = null;
     protected ?string $idAirTable = null;
     protected ?string $name = null;
-    protected array $doctors = [];
+    protected ?array $doctors = [];
 
     /**
      * @return int|null
@@ -50,7 +50,7 @@ class Job
     }
 
     /**
-     * @param string|null $name
+     * @param string $name
      */
     public function setName(?string $name): void
     {
@@ -58,18 +58,18 @@ class Job
     }
 
     /**
-     * @return array
+     * @return array|null
      */
-    public function getDoctors(): array
+    public function getDoctors(): ?array
     {
         return $this->doctors;
     }
 
     /**
-     * @param array $doctors
+     * @param array|null $doctors
      */
 
-    public function setDoctors(array $doctors): void
+    public function setDoctors(?array $doctors): void
     {
         $this->doctors = $doctors;
     }

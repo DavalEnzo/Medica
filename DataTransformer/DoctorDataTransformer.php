@@ -27,7 +27,7 @@ class DoctorDataTransformer
             $modele = new Doctor();
             $modele->setFirstname($doctor->{"fields"}->{"Firstname"});
             $modele->setLastname($doctor->{"fields"}->{"Lastname"});
-            $modele->setJobs($doctor->{"fields"}->{"Jobs_Name"});
+            $modele->setJobs(!empty($doctor->{"fields"}->{"Jobs_Name"}) ? $doctor->{"fields"}->{"Jobs_Name"} : null);
             $modele->setIdAirTable($doctor->{"id"});
             $modele->setId(++$id);
 

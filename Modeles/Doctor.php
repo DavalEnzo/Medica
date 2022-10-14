@@ -8,7 +8,7 @@ class Doctor
     protected ?string $idAirTable = null;
     protected ?string $firstname = null;
     protected ?string $lastname = null;
-    protected array $jobs = [];
+    protected ?array $jobs = [];
 
     /**
      * @return int|null
@@ -75,17 +75,17 @@ class Doctor
     }
 
     /**
-     * @return array
+     * @return array|null
      */
-    public function getJobs(): array
+    public function getJobs(): ?array
     {
         return $this->jobs;
     }
 
     /**
-     * @param array $jobs
+     * @param array|null $jobs
      */
-    public function setJobs(array $jobs): void
+    public function setJobs(?array $jobs): void
     {
         $this->jobs = $jobs;
     }

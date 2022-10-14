@@ -27,8 +27,8 @@ class MaladieDataTransformer
             $modele = new Maladie();
             $modele->setName($disease->{"fields"}->{"Name"});
             $modele->setDescription($disease->{"fields"}->{"Description"});
-            $modele->setPatientsLastname($disease->{"fields"}->{"Patients_Lastname"});
-            $modele->setPatientsFirstname($disease->{"fields"}->{"Patients_Firstname"});
+            $modele->setPatientsLastname(!empty($disease->{"fields"}->{"Patients_Lastname"}) ? $disease->{"fields"}->{"Patients_Lastname"} : null);
+            $modele->setPatientsFirstname(!empty($disease->{"fields"}->{"Patients_Firstname"}) ? $disease->{"fields"}->{"Patients_Firstname"} : null);
             $modele->setIdAirTable($disease->{"id"});
             $modele->setId(++$id);
 

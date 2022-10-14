@@ -7,10 +7,10 @@ class Consultation
     protected ?int $id = null;
     protected ?string $idAirTable = null;
     protected ?string $date = null;
-    protected array $patientsFirstname = [];
-    protected array $patientsLastname = [];
-    protected array $diseases = [];
-    protected array $doctorName = [];
+    protected ?array $patientsFirstname = [];
+    protected ?array $patientsLastname = [];
+    protected ?array $diseases = [];
+    protected ?array $doctorName = [];
 
     /**
      * @return int|null
@@ -61,65 +61,65 @@ class Consultation
     }
 
     /**
-     * @return array
+     * @return array|null
      */
-    public function getPatientsFirstname(): array
+    public function getPatientsFirstname(): ?array
     {
         return $this->patientsFirstname;
     }
 
     /**
-     * @param array $patientsFirstname
+     * @param array|null $patientsFirstname
      */
-    public function setPatientsFirstname(array $patientsFirstname): void
+    public function setPatientsFirstname(?array $patientsFirstname): void
     {
         $this->patientsFirstname = $patientsFirstname;
     }
 
     /**
-     * @return array
+     * @return array|null
      */
-    public function getPatientsLastname(): array
+    public function getPatientsLastname(): ?array
     {
         return $this->patientsLastname;
     }
 
     /**
-     * @param array $patientsLastname
+     * @param array|null $patientsLastname
      */
-    public function setPatientsLastname(array $patientsLastname): void
+    public function setPatientsLastname(?array $patientsLastname): void
     {
         $this->patientsLastname = $patientsLastname;
     }
 
     /**
-     * @return array
+     * @return array|null
      */
-    public function getDiseases(): array
+    public function getDiseases(): ?array
     {
         return $this->diseases;
     }
 
     /**
-     * @param array $diseases
+     * @param array|null $diseases
      */
-    public function setDiseases(array $diseases): void
+    public function setDiseases(?array $diseases): void
     {
         $this->diseases = $diseases;
     }
 
     /**
-     * @return array
+     * @return array|null
      */
-    public function getDoctorName(): array
+    public function getDoctorName(): ?array
     {
         return $this->doctorName;
     }
 
     /**
-     * @param array $doctorName
+     * @param array|null $doctorName
      */
-    public function setDoctorName(array $doctorName): void
+    public function setDoctorName(?array $doctorName): void
     {
         $this->doctorName = $doctorName;
     }
