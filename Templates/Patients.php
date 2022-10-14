@@ -18,8 +18,7 @@ $dto = new MaladieDataTransformer(new MaladieRepository());
 $diseases = $dto->transformDiseasesName();
 $id = 1;
 
-include_once "Modal/Update/ModalUpdatePatient.php";
-include_once "Modal/Create/ModalCreatePatient.php";
+include_once "Modal/ModalPatient.php";
 include_once "Modal/ModalDelete.php";
 ?>
 
@@ -27,6 +26,14 @@ include_once "Modal/ModalDelete.php";
     <div class="w-full text-center text-3xl">
         <h2 class="text-4xl font-bold dark:text-white text-shadow my-10">Les Patients</h2>
     </div>
+
+    <button type="button"
+            onclick="getApiPatient('', '<?=$self?>')"
+            class="text-white bg-green-700 hover:bg-green-800 hover:ring-2 hover:ring-green-500 font-medium rounded-lg text-xl px-5 py-2.5 mr-2 mb-5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800"
+            data-modal-toggle="patientModal"
+    >
+        Créer un Patient
+    </button>
 
     <div class="overflow-x-auto rounded-lg">
         <table class="w-full text-medium text-left text-gray-300 dark:text-gray-200">
@@ -101,7 +108,7 @@ include_once "Modal/ModalDelete.php";
                             <button type="button"
                                     class="text-white bg-blue-700 hover:bg-blue-800 hover:ring-2 hover:ring-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                                     onclick="getApiPatient('<?= $patient->getIdAirTable(); ?>', '<?= $self ?>')"
-                                    data-modal-toggle="updateModal">
+                                    data-modal-toggle="patientModal">
                                 Modifier
                             </button>
                             <button type="button"
@@ -116,16 +123,6 @@ include_once "Modal/ModalDelete.php";
                 <?php
             }
             ?>
-            <tr class="bg-white border-b dark:bg-gray-600 dark:border-gray-500 sticky bottom-0 pb-1">
-                <th colspan="10" scope="row"
-                    class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    <button type="button"
-                            class="focus:outline-none text-white bg-green-700 hover:bg-green-800 hover:ring-2 hover:ring-green-500 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-900"
-                            data-modal-toggle="createPatientModal">
-                        + Ajouter
-                    </button>
-                </th>
-            </tr>
             </tbody>
         </table>
     </div>
