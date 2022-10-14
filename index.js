@@ -12,49 +12,48 @@ function getApiTable(table) {
 // récupérer les différents Headers
 function getHeaderPatch(data) {
     return {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json'},
+        method: "PATCH",
+        headers: {"Content-Type": "application/json"},
         body: JSON.stringify(data)
     }
 }
 
 function getHeaderPost(data) {
     return {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json'},
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
         body: JSON.stringify(data)
     }
 }
 
 function getHeaderGet() {
     return {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json'},
+        method: "GET",
+        headers: {"Content-Type": "application/json"},
     }
 }
 
 function getHeaderDelete() {
     return {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json'},
+        method: "DELETE",
+        headers: {"Content-Type": "application/json"},
     }
 }
 
 function checkError(array) {
     console.log(array)
     let error = 0
-    for (let i=0; i < array.length; i++)
-    {
+    for (let i = 0; i < array.length; i++) {
         console.log(array[i].id);
         if (array[i].value === "") {
             error++;
 
-            document.getElementById(array[i].id + 'Error').innerHTML = '* Champ invalide';
+            document.getElementById(array[i].id + "Error").innerHTML = "* Champ invalide";
         } else {
-            document.getElementById(array[i].id + 'Error').innerHTML = '';
+            document.getElementById(array[i].id + "Error").innerHTML = "";
         }
     }
-console.log(error)
+    console.log(error)
     return error
 }
 
@@ -65,14 +64,14 @@ function fetchApi(table, data, header) {
     fetch(URL, header)
         .then((response) => {
             console.log(response);
-            if(response.ok) {
+            if (response.ok) {
                 response.json().then((data) => {
                     location.reload();
                 })
             } else {
                 console.log(response);
             }
-        }).catch((e) =>{
+        }).catch((e) => {
         console.log(e)
     })
 }
@@ -88,40 +87,40 @@ function getApiConsultation(id, table) {
 
         fetch(URL, getHeaderGet())
             .then((response) => {
-                if(response.ok) {
+                if (response.ok) {
                     response.json().then((data) => {
-                        let date = new Date(data['fields']['Date']);
+                        let date = new Date(data["fields"]["Date"]);
                         let year = date.getFullYear();
-                        let month = date.getMonth()+1;
+                        let month = date.getMonth() + 1;
                         let dt = date.getDate();
-                        let hours = date.getUTCHours() ;
+                        let hours = date.getUTCHours();
                         let minutes = date.getMinutes();
 
                         if (dt < 10) {
-                            dt = '0' + dt;
+                            dt = "0" + dt;
                         }
                         if (month < 10) {
-                            month = '0' + month;
+                            month = "0" + month;
                         }
                         if (hours < 10) {
-                            hours = '0' + hours;
+                            hours = "0" + hours;
                         }
                         if (minutes < 10) {
-                            minutes = '0' + minutes;
+                            minutes = "0" + minutes;
                         }
                         document.getElementById("consultationTitle").innerHTML = "Modifier la consultation du patient";
                         document.getElementById("consultationButton").textContent = "Modifier"
                         document.getElementById("consultationButton").className = "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                        document.getElementById("patientName").value = data['fields']['Patient'][0];
-                        document.getElementById("doctorName").value = data['fields']['Doctor'][0];
+                        document.getElementById("patientName").value = data["fields"]["Patient"][0];
+                        document.getElementById("doctorName").value = data["fields"]["Doctor"][0];
                         document.getElementById("dateTime").value = year + "-" + month + "-" + dt;
                         document.getElementById("time").value = hours + ":" + minutes;
-                        document.getElementById('consultationId').value = id;
+                        document.getElementById("consultationId").value = id;
                     })
                 } else {
                     console.log(response);
                 }
-            }).catch((e) =>{
+            }).catch((e) => {
             console.log(e)
         })
     } else {
@@ -138,16 +137,16 @@ function getApiConsultation(id, table) {
 
 function validateConsultation(table) {
     let array = [
-        document.getElementById('patientName'),
-        document.getElementById('doctorName'),
-        document.getElementById('dateTime'),
-        document.getElementById('time'),
+        document.getElementById("patientName"),
+        document.getElementById("doctorName"),
+        document.getElementById("dateTime"),
+        document.getElementById("time"),
     ]
-    let patient = document.getElementById('patientName').value;
-    let docteur = document.getElementById('doctorName').value;
-    let date = document.getElementById('dateTime').value;
-    let time = document.getElementById('time').value;
-    let id = document.getElementById('consultationId').value;
+    let patient = document.getElementById("patientName").value;
+    let docteur = document.getElementById("doctorName").value;
+    let date = document.getElementById("dateTime").value;
+    let time = document.getElementById("time").value;
+    let id = document.getElementById("consultationId").value;
 
     if (0 < checkError(array)) {
         return;
@@ -155,16 +154,16 @@ function validateConsultation(table) {
 
     let data = {};
 
-    if (id !== '') {
+    if (id !== "") {
         // update
         data = {
-            'records': [
+            "records": [
                 {
-                    'id': id,
-                    'fields': {
-                        'Patient': [patient],
-                        'Doctor': [docteur],
-                        'Date': date + "T" + time + ":00.000Z",
+                    "id": id,
+                    "fields": {
+                        "Patient": [patient],
+                        "Doctor": [docteur],
+                        "Date": date + "T" + time + ":00.000Z",
                     }
                 }
             ]
@@ -173,12 +172,12 @@ function validateConsultation(table) {
     } else {
         data = {
             // create
-            'records': [
+            "records": [
                 {
-                    'fields': {
-                        'Patient': [patient],
-                        'Doctor': [docteur],
-                        'Date': date + "T" + time + ":00.000Z",
+                    "fields": {
+                        "Patient": [patient],
+                        "Doctor": [docteur],
+                        "Date": date + "T" + time + ":00.000Z",
                     }
                 }
             ]
@@ -190,39 +189,49 @@ function validateConsultation(table) {
 
 //JOB
 function getApiJob(id, table) {
-    const URL = getApiView(id, table)
 
-    fetch(URL, getHeaderGet())
-        .then((response) => {
-            if(response.ok) {
-                response.json().then((data) => {
-                    document.getElementById("jobName").value = data['fields']['Name'];
-                    document.getElementById('jobId').value = id;
-                })
-            } else {
-                console.log(response);
-            }
-        }).catch((e) =>{
-        console.log(e)
-    })
+    if (id) {
+        const URL = getApiView(id, table)
+
+        fetch(URL, getHeaderGet())
+            .then((response) => {
+                if (response.ok) {
+                    response.json().then((data) => {
+                        document.getElementById("jobTitle").innerHTML = "Modification du métier";
+                        document.getElementById("jobButton").textContent = "Modifier"
+                        document.getElementById("jobButton").className = "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                        document.getElementById("jobName").value = data["fields"]["Name"];
+                        document.getElementById("jobId").value = id;
+                    })
+                } else {
+                    console.log(response);
+                }
+            }).catch((e) => {
+            console.log(e)
+        })
+    } else {
+        document.getElementById("jobTitle").innerHTML = "Création d'un métier";
+        document.getElementById("jobButton").textContent = "Créer"
+        document.getElementById("jobButton").className = "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        document.getElementById("jobName").value = "";
+        document.getElementById("jobId").value = null;
+    }
 }
 
 function validationJob(table) {
     let array = [
-        document.getElementById('jobName'),
+        document.getElementById("jobName"),
     ]
-    let name = document.getElementById('jobName').value;
-    let id = document.getElementById('jobId').value;
+    let name = document.getElementById("jobName").value;
+    let id = document.getElementById("jobId").value;
 
     if (0 < checkError(array)) {
         return;
     }
 
-    console.log(array);
-
     let data = {};
 
-    if (id !== '') {
+    if (id !== "") {
         data = {
             // update
             "records": [
@@ -238,11 +247,11 @@ function validationJob(table) {
     } else {
         data = {
             // create
-            'records': [
+            "records": [
                 {
-                    'fields': {
-                        'Name': name,
-                        'Doctor': []
+                    "fields": {
+                        "Name": name,
+                        "Doctor": []
                     }
                 }
             ]
@@ -254,69 +263,98 @@ function validationJob(table) {
 
 // DOCTOR
 function getApiDoctor(id, table) {
-    const URL = getApiView(id, table)
 
-    fetch(URL, getHeaderGet())
-        .then((response) => {
-            if(response.ok) {
-                response.json().then((data) => {
-                    console.log(data);
-                    document.getElementById("DoctorFirstname").value = data['fields']['Firstname'];
-                    document.getElementById("DoctorLastname").value = data['fields']['Lastname'];
-                    data['fields']['Jobs'].forEach(element =>
-                        document.getElementById(element).checked = true
-                    )
+    if (id) {
+        const URL = getApiView(id, table)
 
-                    document.getElementById('DoctorId').value = id
-                })
-            } else {
-                console.log(response);
-            }
-        }).catch((e) =>{
-        console.log(e)
-    })
+        fetch(URL, getHeaderGet())
+            .then((response) => {
+                if (response.ok) {
+                    response.json().then((data) => {
+                        console.log(data);
+                        document.getElementById("docteurTitle").innerHTML = "Modifier le docteur";
+                        document.getElementById("docteurButton").textContent = "Modifier"
+                        document.getElementById("docteurButton").className = "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                        document.getElementById("DoctorFirstname").value = data["fields"]["Firstname"];
+                        document.getElementById("DoctorLastname").value = data["fields"]["Lastname"];
+                        data["fields"]["Jobs"].forEach(element =>
+                            document.getElementById(element).checked = true
+                        )
+
+                        document.getElementById("DoctorId").value = id
+                    })
+                } else {
+                    console.log(response);
+                }
+            }).catch((e) => {
+            console.log(e)
+        })
+    } else {
+        document.getElementById("docteurTitle").innerHTML = "Créer le docteur";
+        document.getElementById("docteurButton").textContent = "Créer"
+        document.getElementById("docteurButton").className = "text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+        document.getElementById("DoctorFirstname").value = "";
+        document.getElementById("DoctorLastname").value = "";
+
+        job = document.getElementsByClassName("job-checkbox");
+        for (let i = 0; i < job.length; i++) {
+            job[i].checked = false
+        }
+        document.getElementById("DoctorId").value = null
+    }
 }
 
-function updateDoctor(table) {
-    let jobs = document.getElementsByClassName('job-checkbox');
-    let id = document.getElementById('DoctorId').value;
-    let firstname = document.getElementById('DoctorFirstname').value;
-    let lastname = document.getElementById('DoctorLastname').value;
+function validationDoctor(table) {
+    let array = [
+        document.getElementById("DoctorFirstname"),
+        document.getElementById("DoctorLastname"),
+    ]
+
+    let jobs = document.getElementsByClassName("job-checkbox");
+    let id = document.getElementById("DoctorId").value;
+    let firstname = document.getElementById("DoctorFirstname").value;
+    let lastname = document.getElementById("DoctorLastname").value;
     let jobsUpdate = [];
 
-    for (let i=0; i < jobs.length; i++)
-    {
+    if (0 < checkError(array)) {
+        return;
+    }
+
+    for (let i = 0; i < jobs.length; i++) {
         if (jobs[i].checked) {
             jobsUpdate.push(jobs[i].id)
         }
     }
-
-    const URL = getApiTable(table)
-    const data = {
-        "records": [
-            {
-                "id": id,
-                "fields": {
-                    "Jobs": jobsUpdate,
-                    "Lastname": lastname,
-                    "Firstname": firstname,
-                }
-            },
-        ]
+    let data = {}
+    if (id !== "") {
+        data = {
+            "records": [
+                {
+                    "id": id,
+                    "fields": {
+                        "Jobs": jobsUpdate,
+                        "Lastname": lastname,
+                        "Firstname": firstname,
+                    }
+                },
+            ]
+        }
+        fetchApi(table, data, getHeaderPatch(data))
+    } else {
+        data = {
+            "records": [
+                {
+                    "fields": {
+                        "Jobs": jobsUpdate,
+                        "Lastname": lastname,
+                        "Firstname": firstname,
+                    }
+                },
+            ]
+        }
+        fetchApi(table, data, getHeaderPost(data))
     }
 
-    fetch(URL, getHeaderPatch(data))
-        .then((response) => {
-            if(response.ok) {
-                response.json().then((data) => {
-                    location.reload();
-                })
-            } else {
-                console.log(response);
-            }
-        }).catch((e) =>{
-        console.log(e)
-    })
 }
 
 
@@ -326,25 +364,25 @@ function getApiDisease(id, table) {
 
     fetch(URL, getHeaderGet())
         .then((response) => {
-            if(response.ok) {
+            if (response.ok) {
                 response.json().then((data) => {
                     console.log(data);
-                    document.getElementById("DiseaseName").value = data['fields']['Name'];
-                    document.getElementById("DiseaseDescription").value = data['fields']['Description'];
-                    document.getElementById('DiseaseId').value = id
+                    document.getElementById("DiseaseName").value = data["fields"]["Name"];
+                    document.getElementById("DiseaseDescription").value = data["fields"]["Description"];
+                    document.getElementById("DiseaseId").value = id
                 })
             } else {
                 console.log(response);
             }
-        }).catch((e) =>{
+        }).catch((e) => {
         console.log(e)
     })
 }
 
 function updateDisease(table) {
-    let name = document.getElementById('DiseaseName').value;
-    let description = document.getElementById('DiseaseDescription').value;
-    let id = document.getElementById('DiseaseId').value;
+    let name = document.getElementById("DiseaseName").value;
+    let description = document.getElementById("DiseaseDescription").value;
+    let id = document.getElementById("DiseaseId").value;
 
     const URL = getApiTable(table)
     const data = {
@@ -361,14 +399,14 @@ function updateDisease(table) {
 
     fetch(URL, getHeaderPatch(data))
         .then((response) => {
-            if(response.ok) {
+            if (response.ok) {
                 response.json().then((data) => {
                     location.reload();
                 })
             } else {
                 console.log(response);
             }
-        }).catch((e) =>{
+        }).catch((e) => {
         console.log(e)
     })
 }
@@ -380,26 +418,26 @@ function getApiPatient(id, table) {
 
     fetch(URL, getHeaderGet())
         .then((response) => {
-            if(response.ok) {
+            if (response.ok) {
                 response.json().then((data) => {
                     console.log(data);
-                    document.getElementById("PatientAge").value = data['fields']['Age'];
-                    document.getElementById("PatientBlood").value = data['fields']['Blood_type'];
-                    document.getElementById('PatientCity').value = data['fields']['City'];
-                    document.getElementById('PatientCountry').value = data['fields']['Country'];
-                    document.getElementById('PatientEmail').value = data['fields']['Email'];
-                    document.getElementById('PatientFirstname').value = data['fields']['Firstname'];
-                    document.getElementById('PatientLastname').value = data['fields']['Lastname'];
-                    document.getElementById('PatientPhone').value = data['fields']['Phone'];
-                    data['fields']['Diseases'].forEach(element =>
+                    document.getElementById("PatientAge").value = data["fields"]["Age"];
+                    document.getElementById("PatientBlood").value = data["fields"]["Blood_type"];
+                    document.getElementById("PatientCity").value = data["fields"]["City"];
+                    document.getElementById("PatientCountry").value = data["fields"]["Country"];
+                    document.getElementById("PatientEmail").value = data["fields"]["Email"];
+                    document.getElementById("PatientFirstname").value = data["fields"]["Firstname"];
+                    document.getElementById("PatientLastname").value = data["fields"]["Lastname"];
+                    document.getElementById("PatientPhone").value = data["fields"]["Phone"];
+                    data["fields"]["Diseases"].forEach(element =>
                         document.getElementById(element).checked = true
                     )
-                    document.getElementById('PatientId').value = id
+                    document.getElementById("PatientId").value = id
                 })
             } else {
                 console.log(response);
             }
-        }).catch((e) =>{
+        }).catch((e) => {
         console.log(e)
     })
 }
@@ -407,19 +445,18 @@ function getApiPatient(id, table) {
 function updatePatient(table) {
     let age = document.getElementById("PatientAge").value;
     let blood = document.getElementById("PatientBlood").value;
-    let city = document.getElementById('PatientCity').value;
-    let country = document.getElementById('PatientCountry').value;
-    let email = document.getElementById('PatientEmail').value;
-    let diseases = document.getElementsByClassName('patient-checkbox');
-    let firstname = document.getElementById('PatientFirstname').value;
-    let lastname = document.getElementById('PatientLastname').value ;
-    let phone = document.getElementById('PatientPhone').value;
-    let id = document.getElementById('PatientId').value;
+    let city = document.getElementById("PatientCity").value;
+    let country = document.getElementById("PatientCountry").value;
+    let email = document.getElementById("PatientEmail").value;
+    let diseases = document.getElementsByClassName("patient-checkbox");
+    let firstname = document.getElementById("PatientFirstname").value;
+    let lastname = document.getElementById("PatientLastname").value;
+    let phone = document.getElementById("PatientPhone").value;
+    let id = document.getElementById("PatientId").value;
 
     let diseasesUpdate = [];
 
-    for (let i=0; i < diseases.length; i++)
-    {
+    for (let i = 0; i < diseases.length; i++) {
         if (diseases[i].checked) {
             diseasesUpdate.push(diseases[i].id)
         }
@@ -451,36 +488,35 @@ function updatePatient(table) {
 
 function createPatient(table) {
     let array = [
-        document.getElementById('CreatePatientAge'),
-        document.getElementById('CreatePatientBlood'),
-        document.getElementById('CreatePatientCity'),
-        document.getElementById('CreatePatientCountry'),
-        document.getElementById('CreatePatientEmail'),
-        document.getElementById('CreatePatientFirstname'),
-        document.getElementById('CreatePatientLastname'),
-        document.getElementById('CreatePatientPhone'),
+        document.getElementById("CreatePatientAge"),
+        document.getElementById("CreatePatientBlood"),
+        document.getElementById("CreatePatientCity"),
+        document.getElementById("CreatePatientCountry"),
+        document.getElementById("CreatePatientEmail"),
+        document.getElementById("CreatePatientFirstname"),
+        document.getElementById("CreatePatientLastname"),
+        document.getElementById("CreatePatientPhone"),
     ];
 
-    let age = document.getElementById('CreatePatientAge').value;
-    let blood = document.getElementById('CreatePatientBlood').value;
-    let city = document.getElementById('CreatePatientCity').value;
-    let country = document.getElementById('CreatePatientCountry').value;
-    let email = document.getElementById('CreatePatientEmail').value;
-    let firstname = document.getElementById('CreatePatientFirstname').value;
-    let lastname = document.getElementById('CreatePatientLastname').value;
-    let phone = document.getElementById('CreatePatientPhone').value;
+    let age = document.getElementById("CreatePatientAge").value;
+    let blood = document.getElementById("CreatePatientBlood").value;
+    let city = document.getElementById("CreatePatientCity").value;
+    let country = document.getElementById("CreatePatientCountry").value;
+    let email = document.getElementById("CreatePatientEmail").value;
+    let firstname = document.getElementById("CreatePatientFirstname").value;
+    let lastname = document.getElementById("CreatePatientLastname").value;
+    let phone = document.getElementById("CreatePatientPhone").value;
 
     let error = 0;
-    let diseases = document.getElementsByClassName('create-patient-checkbox');
+    let diseases = document.getElementsByClassName("create-patient-checkbox");
 
-    if (checkError(array) > 0 ) {
+    if (checkError(array) > 0) {
         return;
     }
 
     let diseasesCreate = [];
 
-    for (let i=0; i < diseases.length; i++)
-    {
+    for (let i = 0; i < diseases.length; i++) {
         if (diseases[i].checked) {
             diseasesCreate.push(diseases[i].id)
         }
@@ -488,7 +524,7 @@ function createPatient(table) {
 
     data = {
         // create
-        'records': [
+        "records": [
             {
                 "fields": {
                     "Age": age,
@@ -511,50 +547,50 @@ function createPatient(table) {
 //delete
 function deleteRow(table) {
     const id = document.getElementById("suppression").value;
-    if(id != " ") {
+    if (id != " ") {
         deleteApi(id, table)
     }
 }
 
 function deleteApi(id, table) {
     const API_KEY = "keyoVQjZ08H4oQBSO";
-    const URL = `https://api.airtable.com/v0/appMxtIo1QNXAobOO/`  + table + `/` + id + `?api_key=${API_KEY}`;
+    const URL = `https://api.airtable.com/v0/appMxtIo1QNXAobOO/` + table + `/` + id + `?api_key=${API_KEY}`;
 
     fetch(URL, getHeaderDelete())
         .then((response) => {
             console.log(response);
-            if(response.ok) {
+            if (response.ok) {
                 location.reload();
             } else {
                 console.log(response);
             }
-        }).catch((e) =>{
+        }).catch((e) => {
         console.log(e)
     })
 }
 
 function confirmationDeleteConsultation(id) {
     document.getElementById("suppression").value = id;
-    document.getElementById("message").innerHTML ="Êtes-vous sûr de vouloir supprimer cette consultation ?";
+    document.getElementById("message").innerHTML = "Êtes-vous sûr de vouloir supprimer cette consultation ?";
 }
 
 function confirmationDeleteJob(id, nomJob) {
     document.getElementById("suppression").value = id;
-    document.getElementById("message").innerHTML ="Êtes-vous sûr de vouloir supprimer le métier " + nomJob + " ?";
+    document.getElementById("message").innerHTML = "Êtes-vous sûr de vouloir supprimer le métier " + nomJob + " ?";
 }
 
 function confirmationDeleteDoctor(id, nomDoctor) {
     document.getElementById("suppression").value = id;
-    document.getElementById("message").innerHTML ="Êtes-vous sûr de vouloir supprimer le docteur " + nomDoctor + " ?";
+    document.getElementById("message").innerHTML = "Êtes-vous sûr de vouloir supprimer le docteur " + nomDoctor + " ?";
 }
 
 function confirmationDeleteDisease(id, nomMaladie) {
     document.getElementById("suppression").value = id;
-    document.getElementById("message").innerHTML ="Êtes-vous sûr de vouloir supprimer la maladie " + nomMaladie + " ?";
+    document.getElementById("message").innerHTML = "Êtes-vous sûr de vouloir supprimer la maladie " + nomMaladie + " ?";
 }
 
 function confirmationDeletePatient(id, nomPatient) {
     document.getElementById("suppression").value = id;
-    document.getElementById("message").innerHTML ="Êtes-vous sûr de vouloir supprimer le patient " + nomPatient + " ?";
+    document.getElementById("message").innerHTML = "Êtes-vous sûr de vouloir supprimer le patient " + nomPatient + " ?";
 }
 
