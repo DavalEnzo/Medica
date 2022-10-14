@@ -25,6 +25,14 @@ include_once "Modal/ModalDelete.php";
         </h2>
     </div>
 
+    <button type="button"
+            onclick="getApiDoctor('', '<?=$self?>')"
+            class="text-white bg-green-700 hover:bg-green-800 hover:ring-2 hover:ring-green-500 font-medium rounded-lg text-xl px-5 py-2.5 mr-2 mb-5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800"
+            data-modal-toggle="docteurModal"
+    >
+        Ajouter un docteur
+    </button>
+
         <div class="overflow-x-auto rounded-lg">
             <table class="w-full text-xl text-left text-gray-300 dark:text-gray-200">
                 <thead class="text-xl text-gray-300 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-300 sticky top-0">
@@ -68,7 +76,7 @@ include_once "Modal/ModalDelete.php";
                                 <button type="button"
                                         class="text-white bg-blue-700 hover:bg-blue-800 hover:ring-2 hover:ring-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                                         onclick="getApiDoctor('<?= $doctor->getIdAirTable(); ?>', '<?=$self?>')"
-                                        data-modal-toggle="updateModal">
+                                        data-modal-toggle="docteurModal">
                                     Modifier
                                 </button>
                                 <button type="button"

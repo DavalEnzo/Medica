@@ -23,6 +23,7 @@ include_once "Modal/ModalDelete.php";
     <button type="button"
             class="text-white bg-green-700 hover:bg-green-800 hover:ring-2 hover:ring-green-500 font-medium rounded-lg text-xl px-5 py-2.5 mr-2 mb-5 dark:bg-green-600 dark:hover:bg-green-700 focus:outline-none dark:focus:ring-green-800"
             data-modal-toggle="jobModal"
+            onclick="getApiJob('', '<?=$self;?>')"
     >
         Créer un job
     </button>
