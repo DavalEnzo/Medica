@@ -81,44 +81,59 @@ function fetchApi(table, data, header) {
 
 //CONSULTATION
 function getApiConsultation(id, table) {
-    const URL = getApiView(id, table)
 
-    fetch(URL, getHeaderGet())
-        .then((response) => {
-            if(response.ok) {
-                response.json().then((data) => {
-                    let date = new Date(data['fields']['Date']);
-                    let year = date.getFullYear();
-                    let month = date.getMonth()+1;
-                    let dt = date.getDate();
-                    let hours = date.getUTCHours() ;
-                    let minutes = date.getMinutes();
+    if (id) {
 
-                    if (dt < 10) {
-                        dt = '0' + dt;
-                    }
-                    if (month < 10) {
-                        month = '0' + month;
-                    }
-                    if (hours < 10) {
-                        hours = '0' + hours;
-                    }
-                    if (minutes < 10) {
-                        minutes = '0' + minutes;
-                    }
+        const URL = getApiView(id, table)
 
-                    document.getElementById("patientName").value = data['fields']['Patient'][0];
-                    document.getElementById("doctorName").value = data['fields']['Doctor'][0];
-                    document.getElementById("dateTime").value = year + "-" + month + "-" + dt;
-                    document.getElementById("time").value = hours + ":" + minutes;
-                    document.getElementById('consultationId').value = id;
-                })
-            } else {
-                console.log(response);
-            }
-        }).catch((e) =>{
-        console.log(e)
-    })
+        fetch(URL, getHeaderGet())
+            .then((response) => {
+                if(response.ok) {
+                    response.json().then((data) => {
+                        let date = new Date(data['fields']['Date']);
+                        let year = date.getFullYear();
+                        let month = date.getMonth()+1;
+                        let dt = date.getDate();
+                        let hours = date.getUTCHours() ;
+                        let minutes = date.getMinutes();
+
+                        if (dt < 10) {
+                            dt = '0' + dt;
+                        }
+                        if (month < 10) {
+                            month = '0' + month;
+                        }
+                        if (hours < 10) {
+                            hours = '0' + hours;
+                        }
+                        if (minutes < 10) {
+                            minutes = '0' + minutes;
+                        }
+                        document.getElementById("consultationTitle").innerHTML = "Modifier la consultation du patient";
+                        document.getElementById("consultationButton").textContent = "Modifier"
+                        document.getElementById("consultationButton").className = "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                        document.getElementById("patientName").value = data['fields']['Patient'][0];
+                        document.getElementById("doctorName").value = data['fields']['Doctor'][0];
+                        document.getElementById("dateTime").value = year + "-" + month + "-" + dt;
+                        document.getElementById("time").value = hours + ":" + minutes;
+                        document.getElementById('consultationId').value = id;
+                    })
+                } else {
+                    console.log(response);
+                }
+            }).catch((e) =>{
+            console.log(e)
+        })
+    } else {
+        document.getElementById("consultationTitle").innerHTML = "Créer une consultation";
+        document.getElementById("consultationButton").textContent = "Créer"
+        document.getElementById("consultationButton").className = "text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+        document.getElementById("patientName").value = "";
+        document.getElementById("doctorName").value = "";
+        document.getElementById("dateTime").value = "";
+        document.getElementById("time").value = "";
+        document.getElementById("consultationId").value = null;
+    }
 }
 
 function validateConsultation(table) {
