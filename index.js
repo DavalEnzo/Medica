@@ -544,7 +544,7 @@ function validationPatient(table) {
     let city = document.getElementById("PatientCity").value;
     let country = document.getElementById("PatientCountry").value;
     let email = document.getElementById("PatientEmail").value;
-    let diseases = document.getElementsByClassName("patient-checkbox");
+    let diseases = document.getElementsByClassName("disease-checkbox");
     let firstname = document.getElementById("PatientFirstname").value;
     let lastname = document.getElementById("PatientLastname").value;
     let phone = document.getElementById("PatientPhone").value;
